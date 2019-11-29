@@ -31,13 +31,13 @@ class Fetch extends CI_Controller {
 		$this->ftps->connection->download($alluser, $local_path);
 
 		// Remove all archived accounts from alluser.csv
-		$alluser_records = new MyIterator_Filter_Archived(
+		$alluserRecords = new MyIterator_Filter_Archived(
 			$this->csv->getRecords($local_path . $alluser)
 		);
 
 		//Find all users who have logged in
 		$loggedInRecords = new MyIterator_Filter_LoggedIn(
-			$alluser_records
+			$alluserRecords
 		);
 
 		//Find all users who have logged in
@@ -46,8 +46,8 @@ class Fetch extends CI_Controller {
 		);
 
 		//Find all users who have logged in
-		$ArchiveRecords = new MyIterator_Filter_Archive(
-			$alluser_records
+		$archiveRecords = new MyIterator_Filter_Archive(
+			$alluserRecords
 		);
 
 		// Set file properties
@@ -57,10 +57,10 @@ class Fetch extends CI_Controller {
 		$this->ftps->connection->download($user, $local_path);
 
 		//set data for output
-		$data['allUsers'] 			= iterator_count ($records);
+		$data['allUsers'] 			= iterator_count ($alluserRecords);
 		$data['activeUsers'] 		= iterator_count ($loggedInRecords);
 		$data['last7Days']			= iterator_count ($last7DaysRecords);
-		$data['archiveCandidates'] 	= iterator_count ($ArchiveRecords);
+		$data['archiveCandidates'] 	= iterator_count ($archiveRecords);
 		$data['dayNumber']			= (int) date('z');
 		$data['weekNumber']			= (int) date('W');
 		$data['yearNumber']			= (int) date('Y');
