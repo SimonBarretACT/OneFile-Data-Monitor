@@ -45,22 +45,10 @@ class Fetch extends CI_Controller {
 			$loggedInRecords
 		);
 
-		//Find all users who have logged in
-		$archiveRecords = new MyIterator_Filter_Archive(
-			$alluserRecords
-		);
-
-		// Set file properties
-		$user = 'user.csv';
-
-		// Download to local using ftps connection
-		$this->ftps->connection->download($user, $local_path);
-
 		//set data for output
 		$data['allUsers'] 			= iterator_count ($alluserRecords);
 		$data['activeUsers'] 		= iterator_count ($loggedInRecords);
 		$data['last7Days']			= iterator_count ($last7DaysRecords);
-		$data['archiveCandidates'] 	= iterator_count ($archiveRecords);
 		$data['dayNumber']			= (int) date('z');
 		$data['weekNumber']			= (int) date('W');
 		$data['yearNumber']			= (int) date('Y');
@@ -70,7 +58,6 @@ class Fetch extends CI_Controller {
 		$snapshot->set("allUsers", 				$data['allUsers']);
 		$snapshot->set("activeUsers", 			$data['activeUsers']);
 		$snapshot->set("last7Days", 			$data['last7Days']);
-		$snapshot->set("archiveCandidates", 	$data['archiveCandidates']);
 		$snapshot->set("dayNumber", 			$data['dayNumber']);
 		$snapshot->set("weekNumber", 			$data['weekNumber']);
 		$snapshot->set("yearNumber", 			$data['yearNumber']);

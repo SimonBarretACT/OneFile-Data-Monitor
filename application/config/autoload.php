@@ -104,12 +104,10 @@ $autoload['helper'] = array();
 |
 */
 if (file_exists(APPPATH . 'config/parse_local.php')):
-    $autoload['config'] = array('parse_local');            
+    $autoload['config'] = array('app', 'parse_local');            
 else:
-    $autoload['config'] = array('parse');
+    $autoload['config'] = array('app', 'parse');
 endif;
-
-$autoload['config'] = array('parse');
 
 /*
 | -------------------------------------------------------------------
