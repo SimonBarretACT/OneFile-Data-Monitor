@@ -53,7 +53,16 @@ class Fetch extends CI_Controller {
 		$data['weekNumber']			= (int) date('W');
 		$data['yearNumber']			= (int) date('Y');
 
-		$snapshot = new Parse\ParseObject("Snapshot");
+		//Check if there is already a snapshot for today
+		$query = new Parse\ParseQuery("Snapshot");
+		$query->equalTo("dayNumber", $data['dayNumber']);
+		$query->equalTo("weekNumber", $data['weekNumber']);
+		$query->equalTo("yearNumber", $data['yearNumber']);
+		$snapshot = $query->first();
+
+		if (!$snapshot):
+			$snapshot = new Parse\ParseObject("Snapshot");
+		endif;
 
 		$snapshot->set("allUsers", 				$data['allUsers']);
 		$snapshot->set("activeUsers", 			$data['activeUsers']);

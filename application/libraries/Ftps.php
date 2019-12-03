@@ -3,12 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include APPPATH . 'third_party/FTP_Implicit_SSL.php';
 
-
 class Ftps {
 
     var $ci;
     public $connection;
-
 
     public function __construct($config=[])
     {

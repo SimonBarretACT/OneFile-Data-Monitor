@@ -69,14 +69,14 @@ class MyIterator_Filter_Archive extends FilterIterator {
             && array_key_exists('DateReview', $value)) {
             
             $ci =& get_instance();
-            $days = $ci->config->item('archive_days');
-            $modified = $ci->config->item('archive_modified');
-            $review = $ci->config->item('archive_review');
+            $days       = $ci->config->item('archive_days');
+            $modified   = $ci->config->item('archive_modified');
+            $review     = $ci->config->item('archive_review');
             
             // Find users who were created more than $days ago
-            $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $value['DateCreated']);
-            $dateCreated = new DateTime($days);
-            $return = ($dateTime < $dateCreated);
+            $dateTime       = DateTime::createFromFormat('Y-m-d H:i:s', $value['DateCreated']);
+            $dateCreated    = new DateTime($days);
+            $return         = ($dateTime < $dateCreated);
 
             if ($return):
                 // Find users who have not logged in in the last $days

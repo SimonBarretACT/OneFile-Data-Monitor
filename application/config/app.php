@@ -10,14 +10,14 @@ endif;
 
 //Number of days since user modified
 if (getenv('ARCHIVE_MODIFIED')):
-    $config['archive_modified']     = getenv('ARCHIVE_MODIFIED');
+    $config['archive_modified'] = getenv('ARCHIVE_MODIFIED');
 else:
-    $config['archive_modified']     = '-30 days';
+    $config['archive_modified'] = '-30 days';
 endif;
 
 //Number of days until review
 if (getenv('ARCHIVE_REVIEW')):
-    $config['archive_review']     = getenv('ARCHIVE_REVIEW');
+    $config['archive_review']   = getenv('ARCHIVE_REVIEW');
 else:
-    $config['archive_review']     = '30 days';
+    $config['archive_review']   = '30 days';
 endif;

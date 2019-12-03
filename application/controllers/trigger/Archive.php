@@ -46,23 +46,31 @@ class Archive extends CI_Controller {
 		$data['weekNumber']			= (int) date('W');
 		$data['yearNumber']			= (int) date('Y');
 
-		// $snapshot = new Parse\ParseObject("Snapshot");
+		//Check if there is already a snapshot for today
+		$query = new Parse\ParseQuery("Snapshot");
+		$query->equalTo("dayNumber", $data['dayNumber']);
+		$query->equalTo("weekNumber", $data['weekNumber']);
+		$query->equalTo("yearNumber", $data['yearNumber']);
+		$snapshot = $query->first();
 
-		// $snapshot->set("archiveCandidates", 	$data['archiveCandidates']);
-		// $snapshot->set("dayNumber", 			$data['dayNumber']);
-		// $snapshot->set("weekNumber", 		$data['weekNumber']);
-		// $snapshot->set("yearNumber", 		$data['yearNumber']);
-		
-		// try {
-		//   $snapshot->save();
-		// } catch (Parse\ParseException $ex) {  
-		//   // Execute any logic that should take place if the save fails.
-		//   // error is a ParseException object with an error code and message.
-		//   echo 'Failed to create new object, with error message: ' . $ex->getMessage();
-		// }
+		if (!$snapshot):
+			$snapshot = new Parse\ParseObject("Snapshot");
+			$snapshot->set("dayNumber", 		$data['dayNumber']);
+			$snapshot->set("weekNumber", 		$data['weekNumber']);
+			$snapshot->set("yearNumber", 		$data['yearNumber']);
+		endif;
 
-		var_dump($data['archiveCandidates']);
+		$snapshot->set("archiveCandidates", $data['archiveCandidates']);
+
+		try {
+		  $snapshot->save();
+		} catch (Parse\ParseException $ex) {  
+		  // Execute any logic that should take place if the save fails.
+		  // error is a ParseException object with an error code and message.
+		  echo 'Failed to create new object, with error message: ' . $ex->getMessage();
+		}
 
 		echo 'Success: The data was retrieved and stored.';
+		
 	}
 }
