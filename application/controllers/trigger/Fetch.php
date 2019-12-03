@@ -72,7 +72,7 @@ class Fetch extends CI_Controller {
 		$snapshot->set("yearNumber", 			$data['yearNumber']);
 		
 		try {
-		  $snapshot->save();
+		  $snapshot->save(true);
 		} catch (Parse\ParseException $ex) {  
 		  // Execute any logic that should take place if the save fails.
 		  // error is a ParseException object with an error code and message.

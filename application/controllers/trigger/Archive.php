@@ -63,7 +63,7 @@ class Archive extends CI_Controller {
 		$snapshot->set("archiveCandidates", $data['archiveCandidates']);
 
 		try {
-		  $snapshot->save();
+		  $snapshot->save(true);
 		} catch (Parse\ParseException $ex) {  
 		  // Execute any logic that should take place if the save fails.
 		  // error is a ParseException object with an error code and message.
