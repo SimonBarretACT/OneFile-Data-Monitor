@@ -61,6 +61,11 @@
                             <i class="fas fa-home fa-fw mr-3 text-blue-600"></i><span class="pb-1 md:pb-0 text-sm">Home</span>
                         </a>
                     </li>
+					<li class="mr-6 my-2 md:my-0">
+                        <a href="archive" class="block py-1 md:py-3 pl-1 align-middle text-blue-600 no-underline hover:text-gray-900 border-b-2 border-white hover:border-blue-600">
+                            <i class="fas fa-archive fa-fw mr-3 text-blue-600"></i><span class="pb-1 md:pb-0 text-sm">Archive</span>
+                        </a>
+                    </li>
 				</ul>
 				
 				<div class="relative pull-right pl-4 pr-4 md:pr-0">
@@ -132,6 +137,7 @@
                 </div>
                 <div class="w-full md:w-1/2 xl:w-1/3 p-3">
                     <!--Metric Card-->
+                    <a href="archive">
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
@@ -143,6 +149,7 @@
                             </div>
                         </div>
                     </div>
+                    </a>
                     <!--/Metric Card-->
                 </div>
             </div>
@@ -232,42 +239,6 @@
 
 	</div> 
 	<!--/container-->
-	
-	<footer class="bg-white border-t border-gray-400 shadow">	
-		<div class="container max-w-4xl mx-auto flex py-8">
-
-			<div class="w-full mx-auto flex flex-wrap">
-				<div class="flex w-full md:w-1/2 ">
-					<div class="px-8">
-						<h3 class="font-bold font-bold text-gray-900">About</h3>
-						<p class="py-4 text-gray-600 text-sm">
-							This simple app has been created for taking snapshots of OneFile data at scheduled intervals for further analysis. 
-						</p>
-					</div>
-				</div>
-				
-				<div class="flex w-full md:w-1/2">
-					<div class="px-8">
-					<h3 class="font-bold font-bold text-gray-900">Social</h3>
-						<ul class="list-reset items-center text-sm pt-3">
-						  <li>
-							<a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-1" href="#">Add social link</a>
-						  </li>
-						  <li>
-							<a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-1" href="#">Add social link</a>
-						  </li>
-							<li>
-							<a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-1" href="#">Add social link</a>
-						  </li>
-						</ul>
-					</div>
-				</div>
-			</div>
-        
-
-		
-		</div>
-	</footer>
 
 <script>
 	

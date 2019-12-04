@@ -6,6 +6,7 @@ application/cache/*
 application/config/ftps_local.php
 application/config/parse_local.php
 application/config/onefile_local.php
+application/config/sendgrid_local.php
 
 application/logs/*
 !application/logs/index.html

@@ -70,7 +70,30 @@ class Archive extends CI_Controller {
 		  echo 'Failed to create new object, with error message: ' . $ex->getMessage();
 		}
 
+		$archive = new Parse\ParseObject("Archive");
+		$archive->setAssociativeArray("records", iterator_to_array($archiveRecords, false));
+		$archive->set("archiveCandidates", iterator_count ($archiveRecords));
+		$archive->set("is_cli", is_cli());
+
+		try {
+			$archive->save(true);
+		  } catch (Parse\ParseException $ex) {  
+			// Execute any logic that should take place if the save fails.
+			// error is a ParseException object with an error code and message.
+			echo 'Failed to create new object, with error message: ' . $ex->getMessage();
+		  }
+
 		echo 'Success: The data was retrieved and stored.';
+
+		$config['fromEmail'] 	= "simonbarrett@acttraining.org.uk";
+		$config['fromName']  	= "ACT Training";
+		$config['subject']  	= "Sending with SendGrid is Fun";
+		$config['toEmail']  	= "simonbarrett@me.com";
+		$config['toName']  		= "Simon Barrett";
+		$config['contentPlain'] = "and easy to do anywhere, even with PHP";
+		$config['contentHtml']  = "<strong>and easy to do anywhere, even with PHP</strong>";
+
+		sendGrid($config, true);
 		
 	}
 }
