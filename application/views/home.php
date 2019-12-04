@@ -7,6 +7,11 @@
     <title>OneFile Data Monitor</title>
     <meta name="description" content="A method of monitoring OneFile data for data analysis.">
     <meta name="keywords" content="OneFile,ACT Training">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 	
     <link href="https://unpkg.com/tailwindcss@next/dist/tailwind.min.css" rel="stylesheet"> <!--Replace with your tailwind.css once created-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
@@ -167,7 +172,7 @@
                         </div>
                         <div class="p-5">
                             <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
+                            <!-- <script>
                                 new Chart(document.getElementById("chartjs-7"), {
                                     "type": "bar",
                                     "data": {
@@ -195,7 +200,7 @@
                                         }
                                     }
                                 });
-                            </script>
+                            </script> -->
                         </div>
                     </div>
                     <!--/Graph Card-->
@@ -208,7 +213,7 @@
                             <h5 class="font-bold uppercase text-gray-600">Last 7 Days</h5>
                         </div>
                         <div class="p-5">
-                            <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <!-- <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
                             <script>
                                 new Chart(document.getElementById("chartjs-0"), {
                                     "type": "line",
@@ -224,7 +229,7 @@
                                     },
                                     "options": {}
                                 });
-                            </script>
+                            </script> -->
                         </div>
                     </div>
                     <!--/Graph Card-->
