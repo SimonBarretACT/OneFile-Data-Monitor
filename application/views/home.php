@@ -213,8 +213,8 @@
                             <h5 class="font-bold uppercase text-gray-600">Last 7 Days</h5>
                         </div>
                         <div class="p-5">
-                            <!-- <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
-                            <script>
+                            <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
+                            <!-- <script>
                                 new Chart(document.getElementById("chartjs-0"), {
                                     "type": "line",
                                     "data": {
