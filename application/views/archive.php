@@ -27,7 +27,7 @@
 				
 			<div class="w-1/2 pl-2 md:pl-0">
 				<a class="text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold"  href="home"> 
-					<i class="fas fa-database text-blue-600 pr-3"></i> Data Monitor
+					<i class="fas fa-database text-blue-600 pr-3"></i> OneFile Data Monitor
 				</a>
             </div>
 			<div class="w-1/2 pr-0">
