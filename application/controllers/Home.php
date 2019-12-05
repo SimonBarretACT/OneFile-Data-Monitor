@@ -1,8 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends MY_Controller {
 
+	function __construct() {
+        parent::__construct();
+	}
+	
 	/**
 	 * Index Page for this controller.
 	 *
@@ -33,7 +37,20 @@ class Home extends CI_Controller {
 		$data['last7Days'] 			= $object->get("last7Days");
 		$data['archiveCandidates'] 	= $object->get("archiveCandidates");
 
+		// To set page specific title
+		// $this->template->write('title', 'OneFile Data Monitor', TRUE);
 		
-		$this->load->view('home', $data);
+        // 
+        //  if you have any js to add for this page
+        //  
+        //$this->template->add_js('assets/js/niceforms.js');
+        //
+        // * if you have any css to add for this page
+        //
+	    // $this->template->add_css('assets/css/page.css');
+	   
+        $this->template->write_view('content', 'home', $data, TRUE);
+		$this->template->render();
+			
 	}
 }

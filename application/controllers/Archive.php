@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Archive extends CI_Controller {
+class Archive extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -28,6 +28,10 @@ class Archive extends CI_Controller {
 
 		$data['candidates'] = $object->get("records");
 
-		$this->load->view('archive', $data);
+		// Set page specific title
+		$this->template->write('title', 'OneFile Data Monito : Archiver', TRUE);
+	   
+        $this->template->write_view('content', 'archive', $data, TRUE);
+		$this->template->render();
 	}
 }
