@@ -28,8 +28,16 @@ class Archive extends MY_Controller {
 
 		$data['candidates'] = $object->get("records");
 
+		// sendMailgun([
+		// 	'from'    => $this->config->item('mailgun_from'),
+		// 	'to'      => 'Simon Barrett <simonbarrett@acttraining.org.uk>',
+		// 	'subject' => 'The PHP SDK is awesome!',
+		// 	'text'    => 'It is so simple to send a message.'
+		// 	]);
+
+
 		// Set page specific title
-		$this->template->write('title', 'OneFile Data Monito : Archiver', TRUE);
+		$this->template->write('title', 'OneFile Data Monitor : Archiver', TRUE);
 	   
         $this->template->write_view('content', 'archive', $data, TRUE);
 		$this->template->render();

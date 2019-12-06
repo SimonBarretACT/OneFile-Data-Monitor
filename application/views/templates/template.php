@@ -14,7 +14,9 @@
     <link rel="manifest" href="/site.webmanifest">
 	
     <link href="https://unpkg.com/tailwindcss@next/dist/tailwind.min.css" rel="stylesheet"> <!--Replace with your tailwind.css once created-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+	<link href="<?=base_url('assets/css/style.css');?>" rel="stylesheet">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8e29282ac5.js" crossorigin="anonymous"></script>
 
 </head>

@@ -6,7 +6,7 @@ application/cache/*
 application/config/ftps_local.php
 application/config/parse_local.php
 application/config/onefile_local.php
-application/config/sendgrid_local.php
+application/config/mailgun_local.php
 
 application/logs/*
 !application/logs/index.html
@@ -21,6 +21,8 @@ user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
+
+node_modules/*
 
 # IDE Files
 #-------------------------

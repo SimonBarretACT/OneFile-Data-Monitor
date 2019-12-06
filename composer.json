@@ -11,7 +11,9 @@
     "aws/aws-sdk-php": "~3.0",
     "parse/php-sdk" : "1.5.*",
     "maltyxx/restclient": "^4.0",
-    "sendgrid/sendgrid": "~7"
+    "mailgun/mailgun-php": "^3.0",
+    "kriswallsmith/buzz": "^1.0",
+    "nyholm/psr7": "^1.2"
   },
   "require-dev": {
     "mikey179/vfsstream": "1.1.*"

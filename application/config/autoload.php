@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('sendgrid','url', 'form');
+$autoload['helper'] = array('url', 'form', 'mailgun');
 
 /*
 | -------------------------------------------------------------------
@@ -104,9 +104,9 @@ $autoload['helper'] = array('sendgrid','url', 'form');
 |
 */
 if (file_exists(APPPATH . 'config/parse_local.php')):
-    $autoload['config'] = array('app', 'parse_local', 'sendgrid_local');            
+    $autoload['config'] = array('app', 'parse_local', 'mailgun_local');            
 else:
-    $autoload['config'] = array('app', 'parse', 'sendgrid');
+    $autoload['config'] = array('app', 'parse', 'mailgun');
 endif;
 
 /*

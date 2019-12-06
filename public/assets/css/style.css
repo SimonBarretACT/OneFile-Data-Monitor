@@ -1,0 +1,11 @@
+.action-btn {
+    visibility: hidden;
+}
+
+.tableRow:hover .action-btn {
+    visibility: visible;
+}
+
+.tableRow:hover td {
+    color: #63b3ed;
+}
