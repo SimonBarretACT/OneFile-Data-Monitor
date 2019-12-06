@@ -7,6 +7,7 @@ application/config/ftps_local.php
 application/config/parse_local.php
 application/config/onefile_local.php
 application/config/mailgun_local.php
+application/config/*_local.php
 
 application/logs/*
 !application/logs/index.html
