@@ -25,4 +25,4 @@ endif;
 // Trend indicators
 $config['trend_equal']  = '<span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span>';
 $config['trend_up']     = '<span class="text-green-500"><i class="fas fa-caret-up"></i></span>';
-$config['trend-down']   = '<span class="text-red-500"><i class="fas fa-caret-down"></i></span>';
+$config['trend_down']   = '<span class="text-red-500"><i class="fas fa-caret-down"></i></span>';

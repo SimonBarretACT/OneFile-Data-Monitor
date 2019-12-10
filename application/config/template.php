@@ -70,5 +70,18 @@ $template['public']['parser'] = 'parser';
 $template['public']['parser_method'] = 'parse';
 $template['public']['parse_template'] = TRUE;
 
+
+//fullscreen template
+$template['fullscreen']['template'] = 'templates/fullscreen';
+$template['fullscreen']['regions'] = array(
+    'title',
+    'header',
+    'content',
+    'footer'
+);
+$template['fullscreen']['parser'] = 'parser';
+$template['fullscreen']['parser_method'] = 'parse';
+$template['fullscreen']['parse_template'] = TRUE;
+
 /* End of file template.php */
 /* Location: ./application/config/template.php */

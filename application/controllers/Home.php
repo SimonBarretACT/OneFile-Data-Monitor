@@ -14,18 +14,6 @@ class Home extends MY_Controller {
 	public function index()
 	{
 
-		$parse_appid 		= $this->config->item('parse_appid');
-		$parse_masterkey 	= $this->config->item('parse_masterkey');
-		$parse_server 		= $this->config->item('parse_server');
-		$parse_path 		= $this->config->item('parse_path');
-
-		Parse\ParseClient::initialize( $parse_appid, null, $parse_masterkey );
-		Parse\ParseClient::setServerURL($parse_server, $parse_path);
-		$health = Parse\ParseClient::getServerHealth();
-		if($health['status'] !== 200) {
-			die('Oops! There seems to be something wrong.');
-		}
-
 		$query = new Parse\ParseQuery("Snapshot");
 		$query->descending("createdAt");
 		$query->limit(2); // limit to at most 2 results

@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('csv', 'ftps', 'template');
+$autoload['libraries'] = array('csv', 'ftps', 'template', 'session');
 
 /*
 | -------------------------------------------------------------------
