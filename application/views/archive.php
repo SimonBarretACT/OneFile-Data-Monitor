@@ -26,9 +26,9 @@
                                 <?php foreach ($candidates as $candidate): ?>
                                     <tr class="tableRow hover:bg-gray-300 hover:cursor-pointer">
                                         <td><?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?></td>
-                                        <td><?=date("m.d.y", strtotime($candidate['DateCreated']));?></td>
-                                        <td><?=date("m.d.y", strtotime($candidate['DateLogin']));?></td>
-                                        <td><?=date("m.d.y", strtotime($candidate['DateModified']));?></td>
+                                        <td><?=date("d.m.y", strtotime($candidate['DateCreated']));?></td>
+                                        <td><?=date("d.m.y", strtotime($candidate['DateLogin']));?></td>
+                                        <td><?=date("d.m.y", strtotime($candidate['DateModified']));?></td>
 										<td><?=$candidate['Progress'];?>%</td>
 										<td><a href="#" class="action-btn text-red-600 font-bold">Archive</a></td>
                                     </tr>  

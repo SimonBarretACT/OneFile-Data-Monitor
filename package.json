@@ -1,0 +1,25 @@
+{
+  "name": "onefile-data-monitor",
+  "version": "1.0.0",
+  "description": "A method of monitoring OneFile data for data analysis.",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss css/tailwind.css -o public/assets/css/tailwind.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimonBarretACT/onefile-data-monitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SimonBarretACT/onefile-data-monitor/issues"
+  },
+  "homepage": "https://github.com/SimonBarretACT/onefile-data-monitor#readme",
+  "dependencies": {
+    "autoprefixer": "^9.7.3",
+    "postcss-cli": "^6.1.3",
+    "tailwindcss": "^1.1.4"
+  }
+}
