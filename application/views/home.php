@@ -13,7 +13,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-500">Total Users</h5>
-                                <h3 class="font-bold text-3xl"><?=$allUsers;?> <span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span></h3>
+                                <h3 class="font-bold text-3xl"><?=$allUsers;?> <?=trendIndicator($allUsers, $allUsersYesterday);?></h3>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-500">Active Users</h5>
-                                <h3 class="font-bold text-3xl"><?=$activeUsers;?> <span class="text-green-500"><i class="fas fa-caret-up"></i></span></h3>
+                                <h3 class="font-bold text-3xl"><?=$activeUsers;?> <?=trendIndicator($activeUsers, $activeUsersYesterday);?></h3>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-500">Last 7 Days</h5>
-                                <h3 class="font-bold text-3xl"><?=$last7Days;?> <span class="text-red-600"><i class="fas fa-caret-down"></i></span></h3>
+                                <h3 class="font-bold text-3xl"><?=$last7Days;?> <?=trendIndicator($last7Days, $last7DaysYesterday);?></h3>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-500">Archive Candidates</h5>
-                                <h3 class="font-bold text-3xl"><?=$archiveCandidates;?> <span class="text-orange-600"><i class="fas fa-exchange-alt"></i></span></h3>
+                                <h3 class="font-bold text-3xl"><?=$archiveCandidates;?> <?=trendIndicator($archiveCandidates, $archiveCandidatesYesterday);?></h3>
                             </div>
                         </div>
                     </div>
