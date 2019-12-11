@@ -388,12 +388,24 @@ $config['encryption_key'] = 'iTgahMIW3wNgLu9y4jIv9jjCGb4awmGE';
 |
 */
 
-If (getenv('SESS_DRIVER') == 'memcached') {
+If (getenv('SESS_DRIVER') === 'memcached') {
 	$config['sess_driver'] = 'memcached';
 	if (!getenv("MEMCACHIER_SERVERS"))
 			{$config['sess_save_path'] = 'localhost:11211';}
 			else {
-			$config['sess_save_path'] = getenv("MEMCACHIER_SERVERS");}
+            $config['sess_save_path'] = getenv("MEMCACHIER_SERVERS");}
+            
+            ini_set('session.save_handler', 'memcached');
+            ini_set('session.save_path', getenv('MEMCACHIER_SERVERS'));
+            if(version_compare(phpversion('memcached'), '3', '>=')) {
+                ini_set('memcached.sess_persistent', 1);
+                ini_set('memcached.sess_binary_protocol', 1);
+            } else {
+                ini_set('session.save_path', 'PERSISTENT=myapp_session ' . ini_get('session.save_path'));
+                ini_set('memcached.sess_binary', 1);
+            }
+            ini_set('memcached.sess_sasl_username', getenv('MEMCACHIER_USERNAME'));
+            ini_set('memcached.sess_sasl_password', getenv('MEMCACHIER_PASSWORD'));
 		
 } else {
 
@@ -408,18 +420,9 @@ $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
-ini_set('session.save_handler', 'memcached');
-ini_set('session.save_path', getenv('MEMCACHIER_SERVERS'));
-if(version_compare(phpversion('memcached'), '3', '>=')) {
-    ini_set('memcached.sess_persistent', 1);
-    ini_set('memcached.sess_binary_protocol', 1);
-} else {
-    ini_set('session.save_path', 'PERSISTENT=myapp_session ' . ini_get('session.save_path'));
-    ini_set('memcached.sess_binary', 1);
-}
-ini_set('memcached.sess_sasl_username', getenv('MEMCACHIER_USERNAME'));
-ini_set('memcached.sess_sasl_password', getenv('MEMCACHIER_PASSWORD'));
+If (getenv('SESS_DRIVER') === 'memcached') {
 
+}
 
 /*
 |--------------------------------------------------------------------------

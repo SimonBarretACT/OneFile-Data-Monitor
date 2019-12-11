@@ -2,7 +2,6 @@
   "name": "simonbarrettact/onefile-data-monitoring",
   "description": "OneFile",
   "require": {
-    "php": "7.1.*",
     "ext-memcached": "*",
     "codeigniter/framework": "3.1.*",
     "chriskacerguis/codeigniter-restserver": "^3.1",
@@ -15,8 +14,10 @@
     "nyholm/psr7": "^1.2"
   },
   "require-dev": {
+    "heroku/heroku-buildpack-php": "*",
     "mikey179/vfsstream": "1.1.*"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
 }
+
