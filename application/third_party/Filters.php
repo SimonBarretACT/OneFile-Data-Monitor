@@ -58,6 +58,25 @@ public function accept() {
 
 }
 
+class MyIterator_Filter_LastMonth extends FilterIterator {
+
+    public function accept() {
+        $value = $this->current();
+        if (array_key_exists('DateLastLoggedIn', $value)
+         && 
+         $value['DateLastLoggedIn']) {
+            
+            $dateTime = DateTime::createFromFormat('Y-m-d H:i:s', $value['DateLastLoggedIn']);
+            $dateLastWeek = new DateTime('-30 days');
+    
+            return  (($value['Group'] == 'Learner') && ($dateTime >= $dateLastWeek));
+         }
+            
+        return false;
+    }
+    
+    }
+
 class MyIterator_Filter_Archive extends FilterIterator {
 
     public function accept() {

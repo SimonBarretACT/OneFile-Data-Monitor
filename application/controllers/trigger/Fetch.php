@@ -45,10 +45,17 @@ class Fetch extends CI_Controller {
 			$loggedInRecords
 		);
 
+		//Find all users who have logged in
+		$lastMonthRecords = new MyIterator_Filter_LastMonth(
+			$loggedInRecords
+		);
+
 		//set data for output
 		$data['allUsers'] 			= iterator_count ($alluserRecords);
 		$data['activeUsers'] 		= iterator_count ($loggedInRecords);
 		$data['last7Days']			= iterator_count ($last7DaysRecords);
+		$data['lastMonth']			= iterator_count ($lastMonthRecords);
+
 		$data['dayNumber']			= (int) date('z');
 		$data['weekNumber']			= (int) date('W');
 		$data['yearNumber']			= (int) date('Y');
@@ -67,6 +74,7 @@ class Fetch extends CI_Controller {
 		$snapshot->set("allUsers", 				$data['allUsers']);
 		$snapshot->set("activeUsers", 			$data['activeUsers']);
 		$snapshot->set("last7Days", 			$data['last7Days']);
+		$snapshot->set("lastMonth", 			$data['lastMonth']);
 		$snapshot->set("dayNumber", 			$data['dayNumber']);
 		$snapshot->set("weekNumber", 			$data['weekNumber']);
 		$snapshot->set("yearNumber", 			$data['yearNumber']);
