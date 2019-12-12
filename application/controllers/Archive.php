@@ -29,6 +29,20 @@ class Archive extends MY_Controller
 
 		$data['candidates'] = $object->get("records");
 
+		// sort on DateCreated
+		uasort($data['candidates'], function ($one, $two) {
+			
+			$first = $one['DateCreated'];
+			$second = $two['DateCreated'];
+
+			if ($first === $second) {
+				return 0;
+			}
+			return $first < $second ? -1 : 1;
+
+		});
+
+
 		// sendMailgun([
 		// 	'from'    => $this->config->item('mailgun_from'),
 		// 	'to'      => 'Simon Barrett <simonbarrett@acttraining.org.uk>',
