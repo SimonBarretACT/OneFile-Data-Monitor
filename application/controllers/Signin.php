@@ -12,6 +12,16 @@ class Signin extends MY_Controller
 		$this->load->library('form_validation');
 
 		$this->template->set_template('fullscreen');
+
+		//default title
+		$this->template->write('title', 'OneFile Data Monitor', TRUE);
+
+		//default meta description
+		$this->template->add_meta('description', 'A method of monitoring OneFile data for data analysis.');
+		
+		//default meta keywords
+		$this->template->add_meta('keywords', 'OneFile,ACT Training');
+
 	}
 
 	/**
