@@ -23,11 +23,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$whitelist = array(
-    '127.0.0.1',
-    '::1',
-    'onefile-data-monitor.test'
-);
 
 if (getenv('BASE_URL')):
     $config['base_url']     = getenv('BASE_URL');

@@ -8,7 +8,18 @@
 | This option allows you to enable the developer's Toolbar
 |
 */
-$config['enable_develbar'] = FALSE;
+$whitelist = array(
+    '127.0.0.1',
+    '::1',
+    'onefile-data-monitor.test'
+);
+
+if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+    $config['enable_develbar'] = TRUE;
+} else {
+    $config['enable_develbar'] = getenv('DEVBAR_ENABLED');
+}
+
 
 /*
 |--------------------------------------------------------------------------
