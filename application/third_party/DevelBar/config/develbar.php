@@ -17,7 +17,7 @@ $whitelist = array(
 if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
     $config['enable_develbar'] = TRUE;
 } else {
-    $config['enable_develbar'] = getenv('DEVBAR_ENABLED');
+    $config['enable_develbar'] = FALSE;
 }
 
 
