@@ -8,17 +8,19 @@
 | This option allows you to enable the developer's Toolbar
 |
 */
-$whitelist = array(
-    '127.0.0.1',
-    '::1',
-    'onefile-data-monitor.test'
-);
+// $whitelist = array(
+//     '127.0.0.1',
+//     '::1',
+//     'onefile-data-monitor.test'
+// );
 
-if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
-    $config['enable_develbar'] = TRUE;
-} else {
-    $config['enable_develbar'] = FALSE;
-}
+// if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+//     $config['enable_develbar'] = TRUE;
+// } else {
+//     $config['enable_develbar'] = FALSE;
+// }
+
+$config['enable_develbar'] = !(ENVIRONMENT == 'production');
 
 
 /*
@@ -30,7 +32,7 @@ if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
 | if this option is set to TRUE, it will slow down the page loading
 |
 */
-$config['check_update']                 = FALSE;
+$config['check_update']                 = TRUE;
 
 $config['profiler_key_expiration_time'] = 1800; // sec
 
