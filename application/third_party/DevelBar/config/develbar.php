@@ -8,11 +8,7 @@
 | This option allows you to enable the developer's Toolbar
 |
 */
-if (getenv('ENABLE_DEVBAR')):
-    $config['enable_develbar'] = getenv('BASE_URL');
-else:
-    $config['enable_develbar'] = TRUE;
-endif;
+$config['enable_develbar'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
