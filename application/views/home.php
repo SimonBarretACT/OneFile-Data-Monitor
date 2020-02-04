@@ -27,7 +27,7 @@
                                 <div class="rounded p-3 bg-green-600"><i class="fas fa-running fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Active Users</h5>
+                                <h5 class="font-bold uppercase text-gray-500">Active Users (All)</h5>
                                 <h3 class="font-bold text-3xl"><?=$activeUsers;?> <?=trendIndicator($activeUsers, $activeUsersYesterday);?></h3>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                 <div class="rounded p-3 bg-yellow-600"><i class="fas fa-calendar-week fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Last 7 Days</h5>
+                                <h5 class="font-bold uppercase text-gray-500">Last 7 Days (Learners)</h5>
                                 <h3 class="font-bold text-3xl"><?=$last7Days;?> <?=trendIndicator($last7Days, $last7DaysYesterday);?></h3>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 <div class="rounded p-3 bg-pink-600"><i class="far fa-calendar-alt fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Last 30 Days</h5>
+                                <h5 class="font-bold uppercase text-gray-500">Last 30 Days (Learners)</h5>
                                 <h3 class="font-bold text-3xl"><?=$lastMonth;?> <?=trendIndicator($lastMonth, $lastMonthYesterday);?></h3>
                             </div>
                         </div>
