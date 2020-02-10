@@ -57,4 +57,16 @@ class Archive extends MY_Controller
 		$this->template->write_view('content', 'archive', $data, TRUE);
 		$this->template->render();
 	}
+
+	/**
+	 * Archive a learner
+	 *
+	 */
+	public function learner($id)
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit('No direct script access allowed');
+		}
+	}
+
 }
