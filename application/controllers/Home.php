@@ -23,6 +23,7 @@ class Home extends MY_Controller {
 		$object = $objects[0]; //First one
 		$data['allUsers'] 			= $object->get("allUsers");
 		$data['activeUsers'] 		= $object->get("activeUsers");
+		$data['assessors'] 			= $object->get("assessors");
 		$data['last7Days'] 			= $object->get("last7Days");
 		$data['lastMonth'] 			= $object->get("lastMonth");
 		$data['archiveCandidates'] 	= $object->get("archiveCandidates");
@@ -32,12 +33,14 @@ class Home extends MY_Controller {
 			$yesterday = $objects[1]; //Second one
 			$data['allUsersYesterday'] 			= $yesterday->get("allUsers");
 			$data['activeUsersYesterday'] 		= $yesterday->get("activeUsers");
+			$data['assessorsYesterday'] 		= $yesterday->get("assessors");
 			$data['last7DaysYesterday'] 		= $yesterday->get("last7Days");
 			$data['lastMonthYesterday'] 		= $yesterday->get("lastMonth");
 			$data['archiveCandidatesYesterday'] = $yesterday->get("archiveCandidates");
 		else:
 			$data['allUsersYesterday'] 			= 0;
 			$data['activeUsersYesterday'] 		= 0;
+			$data['assessorsYesterday'] 		= 0;
 			$data['last7DaysYesterday'] 		= 0;
 			$data['lastMonthYesterday'] 		= 0;
 			$data['archiveCandidatesYesterday'] = 0;

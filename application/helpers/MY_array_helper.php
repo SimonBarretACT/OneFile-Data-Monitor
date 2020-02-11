@@ -13,6 +13,7 @@
     // This function will search the revisions for a certain value
     // related to the associative key you are looking for.
     $keys = array();
+    $key = -1;
     foreach ($dataArray as $key => $cur_value) {
         if ($cur_value[$key_to_search] == $search_value) {
             if (isset($other_matching_key) && isset($other_matching_value)) {
@@ -34,5 +35,10 @@
             }
         }
     }
-    return $keys;
+    if ($mulitiple):
+        return $keys;
+    else:
+        return $key;
+    endif;
+    
 }

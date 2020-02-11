@@ -7,7 +7,7 @@
                     <!--Table Card-->
                     <div class="bg-white border rounded shadow">
                         <div class="border-b p-3">
-                            <h5 class="font-bold uppercase text-gray-600">Archive Candidates</h5>
+                            <h5 class="font-bold uppercase text-gray-600">Archived</h5>
                         </div>
                         <div class="p-5">
                             <table class="w-full p-5 text-gray-700">
@@ -23,19 +23,23 @@
                                 </thead>
 
                                 <tbody>
-                                <?php foreach ($candidates as $candidate): ?>
-                                    <tr id="c<?=$candidate['UserID'];?>" class="tableRow hover:bg-gray-300 hover:cursor-pointer">
-                                        <td><?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?></td>
-                                        <td><?=date("d.m.y", strtotime($candidate['DateCreated']));?></td>
-                                        <td><?=(date("d.m.y", strtotime($candidate['DateLogin'])) == '01.01.70' ? '' : date("d.m.y", strtotime($candidate['DateLogin'])) );?></td>
-                                        <td><?=($candidate['DateCreated'] == $candidate['DateModified'] ? '' : date("d.m.y", strtotime($candidate['DateModified'])) );?></td>
-										<td><?=$candidate['Progress'];?>%</td>
-										<td><button class="archiver action-btn text-red-600 font-bold" 
-                                            data-learner-id="<?=$candidate['UserID'];?>"
-                                            data-learner-name="<?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?>">
-                                            Archive</button></td>
-                                    </tr>  
-                                <?php endforeach; ?>                               
+                                <?php 
+                                if ($candidates):
+                                    foreach ($candidates as $candidate): ?>
+                                        <tr id="c<?=$candidate['UserID'];?>" class="tableRow hover:bg-gray-300 hover:cursor-pointer">
+                                            <td><?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?></td>
+                                            <td><?=date("d.m.y", strtotime($candidate['DateCreated']));?></td>
+                                            <td><?=(date("d.m.y", strtotime($candidate['DateLogin'])) == '01.01.70' ? '' : date("d.m.y", strtotime($candidate['DateLogin'])) );?></td>
+                                            <td><?=($candidate['DateCreated'] == $candidate['DateModified'] ? '' : date("d.m.y", strtotime($candidate['DateModified'])) );?></td>
+                                            <td><?=$candidate['Progress'];?>%</td>
+                                            <td><button class="archiver action-btn text-green-600 font-bold" 
+                                                data-learner-id="<?=$candidate['UserID'];?>"
+                                                data-learner-name="<?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?>">
+                                                Unarchive</button></td>
+                                        </tr>  
+                                    <?php 
+                                    endforeach;
+                                endif; ?>                               
                                 </tbody>
                             </table>
 
@@ -58,27 +62,27 @@ $( document ).ready(function() {
 
         $.confirm({
             useBootstrap: false,
-            title: 'Archive',
-            content: 'Are you sure you want to archive <strong>' + $name + '</strong>?',
-            icon: 'fas fa-archive',
+            title: 'Unarchive',
+            content: 'Are you sure you want to unarchive <strong>' + $name + '</strong>?',
+            icon: 'fas fa-trash-restore-alt',
             autoClose: 'cancel|5000',
             escapeKey: 'cancel',
             boxWidth: '30%',
             buttons: {
                 confirm: {
-                btnClass: 'btn-red',
-                text: 'Archive',
+                btnClass: 'btn-green',
+                text: 'Unarchive',
                 action: function () {
                     // Make the archive call
-                    $.get( "archive/learner/" + $id, function( ) {
+                    $.get( "unarchive/learner/" + $id, function( ) {
                         $('#c' + $id).fadeOut(1500, function() { 
                             $('#c' + $id).remove(); 
                         });
                         $.alert({
                             useBootstrap: false,
                             boxWidth: '30%',
-                            title: 'Archive',
-                            content: '<strong>' + $name + '&#39;s</strong> portflio has been archived.',
+                            title: 'Unarchive',
+                            content: '<strong>' + $name + '&#39;s</strong> portflio has been unarchived.',
                         });
                     });
                 }
@@ -87,8 +91,8 @@ $( document ).ready(function() {
                     $.alert({
                         useBootstrap: false,
                         boxWidth: '30%',
-                        title: 'Archive',
-                        content: 'The archive has been <strong>cancelled</strong>.',
+                        title: 'Unarchive',
+                        content: 'The unarchive has been <strong>cancelled</strong>.',
                     });
                 }
             }

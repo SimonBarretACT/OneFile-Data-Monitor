@@ -24,6 +24,24 @@ public function accept() {
 
 }
 
+class MyIterator_Filter_Assessor extends FilterIterator {
+
+    public function accept() {
+        $value = $this->current();
+        //alluser
+        if (array_key_exists('Group', $value)
+        && 
+        $value['Group'] !== "Assessor"
+        && 
+        $value['Group'] !== "Internal Quality Assurer") {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    }
+    
 class MyIterator_Filter_LoggedIn extends FilterIterator {
 
 public function accept() {

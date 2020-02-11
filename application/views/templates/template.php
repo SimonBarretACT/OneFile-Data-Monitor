@@ -17,14 +17,16 @@
 	<link href="<?= base_url('assets/css/tailwind.css'); ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/style.css'); ?>" rel="stylesheet">
 
+	<link href="<?= base_url('assets/css/all.css'); ?>" rel="stylesheet">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
-	<script src="https://kit.fontawesome.com/8e29282ac5.js" crossorigin="anonymous"></script>
 
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
 
 </head>
 

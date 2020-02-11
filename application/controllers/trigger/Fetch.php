@@ -35,6 +35,11 @@ class Fetch extends CI_Controller {
 			$this->csv->getRecords($local_path . $alluser)
 		);
 
+		//Find all assessors
+		$assessorRecords = new MyIterator_Filter_Assessor(
+			$alluserRecords
+		);
+
 		//Find all users who have logged in
 		$loggedInRecords = new MyIterator_Filter_LoggedIn(
 			$alluserRecords
@@ -53,6 +58,8 @@ class Fetch extends CI_Controller {
 		//set data for output
 		$data['allUsers'] 			= iterator_count ($alluserRecords);
 		$data['activeUsers'] 		= iterator_count ($loggedInRecords);
+		$data['assessors'] 			= iterator_count ($assessorRecords);
+		
 		$data['last7Days']			= iterator_count ($last7DaysRecords);
 		$data['lastMonth']			= iterator_count ($lastMonthRecords);
 
@@ -73,6 +80,7 @@ class Fetch extends CI_Controller {
 
 		$snapshot->set("allUsers", 				$data['allUsers']);
 		$snapshot->set("activeUsers", 			$data['activeUsers']);
+		$snapshot->set("assessors", 			$data['assessors']);
 		$snapshot->set("last7Days", 			$data['last7Days']);
 		$snapshot->set("lastMonth", 			$data['lastMonth']);
 		$snapshot->set("dayNumber", 			$data['dayNumber']);
