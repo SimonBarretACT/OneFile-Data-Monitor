@@ -24,19 +24,20 @@
 
                                 <tbody>
                                 <?php foreach ($candidates as $candidate): ?>
-                                    <tr class="tableRow hover:bg-gray-300 hover:cursor-pointer">
+                                    <tr id="c<?=$candidate['UserID'];?>" class="tableRow hover:bg-gray-300 hover:cursor-pointer">
                                         <td><?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?></td>
                                         <td><?=date("d.m.y", strtotime($candidate['DateCreated']));?></td>
                                         <td><?=(date("d.m.y", strtotime($candidate['DateLogin'])) == '01.01.70' ? '' : date("d.m.y", strtotime($candidate['DateLogin'])) );?></td>
                                         <td><?=($candidate['DateCreated'] == $candidate['DateModified'] ? '' : date("d.m.y", strtotime($candidate['DateModified'])) );?></td>
 										<td><?=$candidate['Progress'];?>%</td>
-										<td><a href="#" class="action-btn text-red-600 font-bold">Archive</a></td>
+										<td><button class="archiver action-btn text-red-600 font-bold" 
+                                            data-learner-id="<?=$candidate['UserID'];?>"
+                                            data-learner-name="<?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?>">
+                                            Archive</button></td>
                                     </tr>  
                                 <?php endforeach; ?>                               
                                 </tbody>
                             </table>
-
-                            <!-- <p class="py-2"><a href="#">See More issues...</a></p> -->
 
                         </div>
                     </div>
@@ -47,4 +48,45 @@
 								
 					
 		</div>
-		
+    
+<script>
+$( document ).ready(function() {
+    
+    $(".archiver").click(function(){
+        let $id = $( this ).data( "learner-id");
+        let $name = $( this ).data( "learner-name");
+
+        $.confirm({
+            useBootstrap: false,
+            title: 'Archive',
+            content: 'Are you sure you want to archive <strong>' + $name + '</strong>?',
+            buttons: {
+                confirm: {
+                btnClass: 'btn-red',
+                text: 'Archive',
+                action: function () {
+                    // Make the archive call
+                    $.get( "archive/learner/" + $id, function( ) {
+                        $('#c' + $id).fadeOut(1500, function() { 
+                            $('#c' + $id).remove(); 
+                        });
+                        $.alert({
+                            useBootstrap: false,
+                            title: 'Archive',
+                            content: '<strong>' + $name + '&#39;s</strong> portflio has been archived.',
+                        });
+                    });
+                }
+            },
+                cancel: function () {
+                    $.alert({
+                        useBootstrap: false,
+                        title: 'Archive',
+                        content: 'The archive has been <strong>cancelled</strong>.',
+                    });
+                }
+            }
+        });
+    });
+});
+</script>

@@ -13,7 +13,8 @@
     "mailgun/mailgun-php": "^3.0",
     "kriswallsmith/buzz": "^1.0",
     "nyholm/psr7": "^1.2",
-    "minishlink/web-push": "^5.2.0"
+    "minishlink/web-push": "^5.2.0",
+    "guzzlehttp/guzzle": "~6.0"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*",

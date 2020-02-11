@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "074f864c29580743cc4e3bbc61003424",
+    "content-hash": "2bd2da2c8db7ba172c541c9856e0b619",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -377,16 +377,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.124",
+            "version": "v0.126",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "7bdd526abda4d802e973816cd7b4f3f3bc75fa03"
+                "reference": "d296c140b9157b7f4fdf7bae125bf9ce16eeeabd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/7bdd526abda4d802e973816cd7b4f3f3bc75fa03",
-                "reference": "7bdd526abda4d802e973816cd7b4f3f3bc75fa03",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/d296c140b9157b7f4fdf7bae125bf9ce16eeeabd",
+                "reference": "d296c140b9157b7f4fdf7bae125bf9ce16eeeabd",
                 "shasum": ""
             },
             "require": {
@@ -410,7 +410,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2020-01-25T00:24:16+00:00"
+            "time": "2020-02-10T00:24:16+00:00"
         },
         {
             "name": "google/auth",
@@ -2106,7 +2106,7 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.4.3",
+            "version": "v4.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -2963,16 +2963,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v169",
+            "version": "v171",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "e87b635929a8b51c6f2d459cde1a241e478d3d04"
+                "reference": "9760ff33fa8dec0baae3bd8040dd4e49c4ffa271"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/e87b635929a8b51c6f2d459cde1a241e478d3d04",
-                "reference": "e87b635929a8b51c6f2d459cde1a241e478d3d04",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/9760ff33fa8dec0baae3bd8040dd4e49c4ffa271",
+                "reference": "9760ff33fa8dec0baae3bd8040dd4e49c4ffa271",
                 "shasum": ""
             },
             "bin": [
@@ -3003,7 +3003,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2020-01-26T11:19:01+00:00"
+            "time": "2020-02-11T09:03:51+00:00"
         },
         {
             "name": "mikey179/vfsstream",

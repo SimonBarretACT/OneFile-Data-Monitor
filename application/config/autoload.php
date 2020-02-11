@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'form', 'mailgun', 'html');
+$autoload['helper'] = array('url', 'form', 'mailgun', 'html', 'array');
 
 /*
 | -------------------------------------------------------------------
@@ -104,9 +104,9 @@ $autoload['helper'] = array('url', 'form', 'mailgun', 'html');
 |
 */
 if (file_exists(APPPATH . 'config/parse_local.php')):
-    $autoload['config'] = array('app', 'parse_local', 'mailgun_local');            
+    $autoload['config'] = array('app', 'parse_local', 'mailgun_local', 'onefile_local');            
 else:
-    $autoload['config'] = array('app', 'parse', 'mailgun');
+    $autoload['config'] = array('app', 'parse', 'mailgun', 'onefile');
 endif;
 
 /*
