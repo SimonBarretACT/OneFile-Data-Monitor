@@ -40,7 +40,22 @@ class MyIterator_Filter_Assessor extends FilterIterator {
         return true;
     }
     
+}
+
+class MyIterator_Filter_Learner extends FilterIterator {
+
+    public function accept() {
+        $value = $this->current();
+        if (array_key_exists('Group', $value)
+        && 
+        $value['Group'] !== "Learner") {
+            return false;
+        }
+        
+        return true;
     }
+    
+}
     
 class MyIterator_Filter_LoggedIn extends FilterIterator {
 

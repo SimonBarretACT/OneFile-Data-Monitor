@@ -54,6 +54,11 @@
                         <i class="fas fa-trash-restore-alt fa-fw mr-3 text-blue-<?=($this->router->fetch_class() == 'uarchive' ? '600' : '400');?>"></i><span class="pb-1 md:pb-0 text-sm">Unarchive</span>
                     </a>
                 </li>
+                <li class="mr-6 my-2 md:my-0">
+                    <a href="assessors" class="block py-1 md:py-3 pl-1 align-middle text-blue-600 no-underline hover:text-gray-900 border-b-2 border-<?=($this->router->fetch_class() == 'assessors' ? 'blue-600' : 'white');?> hover:border-blue-600">
+                        <i class="fas fa-chalkboard-teacher fa-fw mr-3 text-blue-<?=($this->router->fetch_class() == 'assessors' ? '600' : '400');?>"></i><span class="pb-1 md:pb-0 text-sm">Assessors and IQAs</span>
+                    </a>
+                </li>
             </ul>
             
             <div class="relative pull-right pl-4 pr-4 md:pr-0">

@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 class Archive extends MY_Controller
 {
 
-	protected $parse_appid;
+    protected $parse_appid;
 	protected $parse_masterkey;
 	protected $parse_server;
 	protected $parse_path;
@@ -27,7 +27,7 @@ class Archive extends MY_Controller
 				die('Oops! There seems to be something wrong.');
 			}
 	
-	}
+    }
 
 	/**
 	 * Index Page for this controller.
