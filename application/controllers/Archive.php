@@ -56,12 +56,12 @@ class Archive extends MY_Controller
 		});
 
 
-		sendMailgun([
-			'from'    => $this->config->item('mailgun_from'),
-			'to'      => 'Simon Barrett <simonbarrett@acttraining.org.uk>',
-			'subject' => 'The PHP SDK is awesome!',
-			'text'    => 'It is so simple to send a message.'
-			]);
+		// sendMailgun([
+		// 	'from'    => $this->config->item('mailgun_from'),
+		// 	'to'      => 'Simon Barrett <simonbarrett@acttraining.org.uk>',
+		// 	'subject' => 'The PHP SDK is awesome!',
+		// 	'text'    => 'It is so simple to send a message.'
+		// 	]);
 
 
 		// Set page specific title
