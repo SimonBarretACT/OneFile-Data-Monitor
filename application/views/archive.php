@@ -25,7 +25,7 @@
                                 <tbody>
                                 <?php foreach ($candidates as $candidate): ?>
                                     <tr id="c<?=$candidate['UserID'];?>" class="tableRow hover:bg-gray-300 hover:cursor-pointer">
-                                        <td><?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?></td>
+                                        <td><a href="https://live.onefile.co.uk/learner/portfolio.aspx?UserID=<?=$candidate['UserID'];?>"><?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?></a></td>
                                         <td class="text-right"><?=date("d-m-y", strtotime($candidate['DateCreated']));?></td>
                                         <td class="text-right"><?=(date("d-m-y", strtotime($candidate['DateLogin'])) == '01-01-70' ? '' : date("d-m-y", strtotime($candidate['DateLogin'])) );?></td>
                                         <td class="text-right"><?=($candidate['DateCreated'] == $candidate['DateModified'] ? '' : date("d-m-y", strtotime($candidate['DateModified'])) );?></td>
