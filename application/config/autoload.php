@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH . 'third_party/DevelBar');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('csv', 'ftps', 'template', 'session');
+$autoload['libraries'] = array('csv', 'ftps', 'template', 'session', 'sendgrid');
 
 /*
 | -------------------------------------------------------------------
