@@ -60,8 +60,10 @@ class Archive extends MY_Controller
 								'Simon Barrett', 
 								'simon.barrett.act@gmail.com', 
 								'Simon Barrett', 
-								'Test Email', 
-								'This is a <strong>test</strong> email.'
+								'One of your Learners has been Archived', 
+								'<p>If you think this is an error, please let me know.</p>
+								<p>Thanks</br>Simon Barrett</p>',
+								'If you think this is an error, please let me know.'
 							);
 		
 		// Set page specific title
