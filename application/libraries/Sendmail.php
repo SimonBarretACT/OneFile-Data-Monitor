@@ -3,10 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Sendmail {
 
-        public function sendGrid($fromEmail, $fromName, $toEmail, $toName, $subject, $html, $plain='')
+        public $fromEmail   = 'simonbarrett@acttraining.org.uk';
+        public $fromName    = 'Simon Barrett';
+
+        public function sendGrid($toEmail, $toName, $subject, $html, $plain='')
         {
             $email = new \SendGrid\Mail\Mail(); 
-            $email->setFrom($fromEmail, $fromName);
+            $email->setFrom($this->fromEmail, $this->fromName);
             $email->setSubject($subject);
             $email->addTo($toEmail, $toName);
             if ($plain !== ''):

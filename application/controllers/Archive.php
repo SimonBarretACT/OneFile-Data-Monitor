@@ -54,17 +54,6 @@ class Archive extends MY_Controller
 			return $first < $second ? -1 : 1;
 
 		});
-
-		$this->sendmail->sendGrid(
-								'simonbarrett@acttraining.org.uk', 
-								'Simon Barrett', 
-								'simon.barrett.act@gmail.com', 
-								'Simon Barrett', 
-								'One of your Learners has been Archived', 
-								'<p>If you think this is an error, please let me know.</p>
-								<p>Thanks</br>Simon Barrett</p>',
-								'If you think this is an error, please let me know.'
-							);
 		
 		// Set page specific title
 		$this->template->write('title', 'OneFile Data Monitor : Archive', TRUE);
@@ -125,17 +114,51 @@ class Archive extends MY_Controller
 
 		//Find the record to update
 		$recordIndex = search_records($candidates, false, $id, 'UserID');
+		
+		if ($recordIndex >= 0):
 
+		$assessor = $candidates[$recordIndex]['DefaultAssessor'];
+		$learner = $candidates[$recordIndex]['FirstName'] . ' ' . $candidates[$recordIndex]['LastName'];
+
+		$found = $this->onefile->getUserByName(5, $assessor);
+
+		if (is_array($found) and count($found) > 0):
+			$assessorEmail = $found[0]['Email'];
+		else:
+			$assessorEmail = '';
+		endif;
+
+		$assessorEmail = 'simon.barrett.act@gmail.com';
+
+		$html = "<p>If you think this is an error, please let me know.</p>";
+		$html .= "<p>Thanks</br>Simon Barrett</p>";
+
+		$text = "If you think this is an error, please let me know.\n\n";
+		$text .= "Thanks,\n";
+		$text .= "Simon\n";
+
+
+		$this->sendmail->sendGrid(
+									$assessorEmail, 
+									$assessor, 
+									"$learner's OneFile Account has been Archived", 
+									$html,
+									$text
+									
+								);
+
+		
 		//Remove record and save
-		if ($recordIndex):
-			//Add to the archived records
-			$archived[] = $candidates[$recordIndex];
-			unset($candidates[$recordIndex]);
-			$object->setAssociativeArray("records", $candidates);
-			$object->setAssociativeArray("archived", $archived);
-			$object->save(true);
+		//Add to the archived records
+		$archived[] = $candidates[$recordIndex];
+		unset($candidates[$recordIndex]);
+		$object->setAssociativeArray("records", $candidates);
+		$object->setAssociativeArray("archived", $archived);
+		$object->save(true);
+
 		endif;
 
 	}
+
 
 }

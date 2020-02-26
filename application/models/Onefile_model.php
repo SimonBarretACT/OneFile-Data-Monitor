@@ -58,8 +58,6 @@ class Onefile_model extends CI_Model {
 
     public function archiveUserFromId($id)
     {
-        var_dump( $this->restclient);
-        die();
         return $this->restclient->post($this->onefileUrl . 'User/' . $id . '/Archive', json_encode(array(
             'organisationID' => $this->organisationID
         )));
@@ -76,7 +74,21 @@ class Onefile_model extends CI_Model {
 
     public function getUsers($role = 1, $page = 1, $perPage = 50)
     {
-        return $this->restclient->post($this->onefileUrl . 'User/Search/' . $page .'/' . $perPage, ['role' => $role, 'organisationID' => 2167]);
+        return $this->restclient->post($this->onefileUrl . 'User/Search/' . $page .'/' . $perPage, 
+                                        ['role' => $role, 
+                                        'organisationID' => $this->organisationID]);
+    }
+
+    public function getUserByName($role, $fullname)
+    {
+        $name = explode(" ", $fullname);
+
+        return $this->restclient->post($this->onefileUrl . 'User/Search/1/50', 
+                                        ['role' => $role, 
+                                        'organisationID' => $this->organisationID, 
+                                        'FirstName' => $name[0], 
+                                        'LastName' => $name[1]
+                                        ]);
     }
 
 }
