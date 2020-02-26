@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sendgrid {
+class Sendmail {
 
-        public function send($fromEmail, $fromName, $toEmail, $toName, $subject, $html, $plain='')
+        public function sendGrid($fromEmail, $fromName, $toEmail, $toName, $subject, $html, $plain='')
         {
             $email = new \SendGrid\Mail\Mail(); 
             $email->setFrom($fromEmail, $fromName);

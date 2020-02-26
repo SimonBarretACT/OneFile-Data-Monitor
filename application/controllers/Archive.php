@@ -55,14 +55,14 @@ class Archive extends MY_Controller
 
 		});
 
-		// $this->sendgrid->send(
-		// 						'simonbarrett@acttraining.org.uk', 
-		// 						'Simon Barrett', 
-		// 						'simon.barrett.act@gmail.com', 
-		// 						'Simon Barrett', 
-		// 						'Test Email', 
-		// 						'This is a <strong>test</strong> email.'
-		// 					);
+		$this->sendmail->sendGrid(
+								'simonbarrett@acttraining.org.uk', 
+								'Simon Barrett', 
+								'simon.barrett.act@gmail.com', 
+								'Simon Barrett', 
+								'Test Email', 
+								'This is a <strong>test</strong> email.'
+							);
 		
 		// Set page specific title
 		$this->template->write('title', 'OneFile Data Monitor : Archive', TRUE);
