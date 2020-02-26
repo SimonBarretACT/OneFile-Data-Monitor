@@ -55,15 +55,24 @@ class Archive extends MY_Controller
 
 		});
 
-
-		// sendMailgun([
-		// 	'from'    => $this->config->item('mailgun_from'),
-		// 	'to'      => 'Simon Barrett <simonbarrett@acttraining.org.uk>',
-		// 	'subject' => 'The PHP SDK is awesome!',
-		// 	'text'    => 'It is so simple to send a message.'
-		// 	]);
-
-
+		$email = new \SendGrid\Mail\Mail(); 
+		$email->setFrom("simonbarrett@acttraining.org.uk", "Simon Barrett");
+		$email->setSubject("Sending with SendGrid is Fun");
+		$email->addTo("simon.barrett.act@gmail.com", "Example User");
+		$email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+		$email->addContent(
+			"text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+		);
+		$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+		try {
+			$response = $sendgrid->send($email);
+			print $response->statusCode() . "\n";
+			print_r($response->headers());
+			print $response->body() . "\n";
+		} catch (Exception $e) {
+			echo 'Caught exception: '. $e->getMessage() ."\n";
+		}
+		
 		// Set page specific title
 		$this->template->write('title', 'OneFile Data Monitor : Archive', TRUE);
 

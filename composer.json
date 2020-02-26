@@ -10,6 +10,7 @@
     "parse/php-sdk" : "1.5.*",
     "maltyxx/restclient": "^4.0",
     "mailgun/mailgun-php": "^3.0",
+    "sendgrid/sendgrid": "~7",
     "kriswallsmith/buzz": "^1.0",
     "nyholm/psr7": "^1.2",
     "minishlink/web-push": "^5.2.0",
