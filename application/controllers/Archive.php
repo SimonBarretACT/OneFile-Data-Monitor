@@ -129,8 +129,11 @@ class Archive extends MY_Controller
 		endif;
 
 		$assessorEmail = 'simon.barrett.act@gmail.com';
+		$userID = $candidates[$recordIndex]['UserID'];
+		$unarchive = base_url("unarchive/learner/$userID");
 
-		$html = "<p>If you think this is an error, please let me know.</p>";
+		$html = "<p>If you think this is an error, please let me know or click the link below.</p>";
+		$html = '<p><a href="' . $unarchive . '">Unarchive ' . $learner . '</a></p>';
 		$html .= "<p>Thanks</br>Simon Barrett</p>";
 
 		$text = "If you think this is an error, please let me know.\n\n";

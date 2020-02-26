@@ -58,14 +58,6 @@ class Unarchive extends MY_Controller
 	endif;
 
 
-		// sendMailgun([
-		// 	'from'    => $this->config->item('mailgun_from'),
-		// 	'to'      => 'Simon Barrett <simonbarrett@acttraining.org.uk>',
-		// 	'subject' => 'The PHP SDK is awesome!',
-		// 	'text'    => 'It is so simple to send a message.'
-		// 	]);
-
-
 		// Set page specific title
 		$this->template->write('title', 'OneFile Data Monitor : Unarchive', TRUE);
 
@@ -79,9 +71,6 @@ class Unarchive extends MY_Controller
 	 */
 	public function learner($id)
 	{
-		if (!$this->input->is_ajax_request()) {
-			exit('No direct script access allowed');
-		}
 
 		$base_url 		= $this->config->item('onefile_base_url');
 		$token 			= $this->config->item('onefile_customer_token');
@@ -135,6 +124,14 @@ class Unarchive extends MY_Controller
 			$object->setAssociativeArray("archived", $archived);
 			$object->save(true);
 		endif;
+
+		if (!$this->input->is_ajax_request()) {
+			$this->template->set_template('fullscreen');
+			// Set page specific title
+			$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
+			$this->template->write_view('content', 'unarchived', [], TRUE);
+			$this->template->render();			
+		}
 
 	}
 
