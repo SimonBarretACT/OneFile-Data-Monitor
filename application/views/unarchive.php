@@ -32,7 +32,7 @@
                                             <td class="text-right"><?=(date("d-m-y", strtotime($candidate['DateLogin'])) == '01-01-70' ? '' : date("d-m-y", strtotime($candidate['DateLogin'])) );?></td>
                                             <td class="text-right"><?=($candidate['DateCreated'] == $candidate['DateModified'] ? '' : date("d-m-y", strtotime($candidate['DateModified'])) );?></td>
                                             <td class="text-right"><?=$candidate['Progress'];?>%</td>
-                                            <td class="text-right"><button class="archiver action-btn text-green-600 font-bold" 
+                                            <td class="text-center"><button class="archiver action-btn text-green-600 font-bold" 
                                                 data-learner-id="<?=$candidate['UserID'];?>"
                                                 data-learner-name="<?=$candidate['FirstName'] . ' ' . $candidate['LastName'];?>">
                                                 Unarchive</button></td>

@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Sendmail {
 
-        public $fromEmail   = 'simonbarrett@acttraining.org.uk';
-        public $fromName    = 'Simon Barrett';
+        public $fromEmail   = 'no-reply@unarchive.xyz';
+        public $fromName    = 'OneFile @ CAVC';
 
         public function sendGrid($toEmail, $toName, $subject, $html, $plain='')
         {
