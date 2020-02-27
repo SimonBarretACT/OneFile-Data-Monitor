@@ -75,7 +75,7 @@ class Onefile_model extends CI_Model {
     public function getUsers($role = 1, $page = 1, $perPage = 50)
     {
         return $this->restclient->post($this->onefileUrl . 'User/Search/' . $page .'/' . $perPage, 
-                                        ['role' => $role, 
+                                    ['role' => $role, 
                                         'organisationID' => $this->organisationID]);
     }
 
@@ -84,7 +84,7 @@ class Onefile_model extends CI_Model {
         $name = explode(" ", $fullname);
 
         return $this->restclient->post($this->onefileUrl . 'User/Search/1/50', 
-                                        ['role' => $role, 
+                            ['role' => $role, 
                                         'organisationID' => $this->organisationID, 
                                         'FirstName' => $name[0], 
                                         'LastName' => $name[1]

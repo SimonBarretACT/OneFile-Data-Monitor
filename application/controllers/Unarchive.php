@@ -135,4 +135,83 @@ class Unarchive extends MY_Controller
 
 	}
 
+	/**
+	 * Unarchive a list of learners and assign them to a group
+	 *
+	 */
+	public function list($classroom=57911, $filename='unarchive.csv')
+	{
+
+		// Set file properties
+		$trainees = 'unarchive.csv';
+		$local_path = APPPATH . '/import/';
+
+		// Fetch Unarchive records 
+		$iteratorRecords = $this->csv->getRecords($local_path . $trainees);
+		$Unarchive = iterator_to_array($iteratorRecords, true);
+
+		$base_url 		= $this->config->item('onefile_base_url');
+		$token 			= $this->config->item('onefile_customer_token');
+		$organisationId = $this->config->item('onefile_organisation_id'); 
+
+		$client = new Client([
+			// Base URI is used with relative requests
+			'base_uri' => $base_url
+		]);
+
+		$response = $client->request('POST', 'Authentication',
+		['headers' => [
+			'X-CustomerToken' => $token,
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			]]);
+		$sessionKey = $response->getBody();
+
+		$count = 0;
+		
+		foreach ($Unarchive as $record):
+
+				$id = $record['ID'];
+
+				try {
+					$response = $client->request('POST', "User/$id/Unarchive",
+					[
+						'headers' => [
+						'X-TokenID' => strval($sessionKey),
+						'Content-Type' => 'application/x-www-form-urlencoded'
+						],
+						'form_params' => [
+							'role' => 1,
+							'organisationID' => $organisationId
+						]
+					]);	
+
+					$response = $client->request('POST', "User/$id",
+					[
+						'headers' => [
+						'X-TokenID' => strval($sessionKey),
+						'Content-Type' => 'application/x-www-form-urlencoded'
+						],
+						'form_params' => [
+							'role' => 1,
+							'organisationID' => $organisationId,
+							'ClassroomID' => $classroom
+						]
+					]);
+
+					$count++;
+
+				} catch (Exception $e) {
+					echo 'Unarchive failed for: ', $id,  "\n";
+				}
+
+
+			
+
+		endforeach;
+
+		echo "Completed: $count learners have been unarchived.";
+		
+	}
+
+
 }
