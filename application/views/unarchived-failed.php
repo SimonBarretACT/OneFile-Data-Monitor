@@ -4,7 +4,7 @@
             <div class="flex flex-row flex-wrap flex-grow mt-2">
 
             <div class="w-full p-3">
-                  <img class="text-center" height="100" width="100" src="<?=base_url('assets/img/undraw_server_down_s4lk.svg');?>" />        
+                  <img class="object-center" height="200" width="200" src="<?=base_url('assets/img/undraw_server_down_s4lk.svg');?>" />        
                   <h1 class="text-3xl text-white text-center">Error</h1>
                   <p class="text-white text-center">Your learner has not been restored.</p>
                   <p class="text-white text-center">Please contact <a class="font-bold" href="mailto:support@onefileatcavc">support</a>.</p>
