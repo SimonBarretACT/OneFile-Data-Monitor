@@ -141,14 +141,12 @@ class Archive extends MY_Controller
 		$text .= "Simon\n";
 
 
-		$this->sendmail->sendGrid(
-									$assessorEmail, 
-									$assessor, 
-									"$learner's OneFile Account has been Archived", 
-									$html,
-									$text
-									
-								);
+		$this->sendmail->sendGridDynamic(
+										$assessorEmail, 
+										$assessor, 
+										"$learner's OneFile Account has been Archived", 
+										$learner,
+										$id);
 
 		
 		//Remove record and save

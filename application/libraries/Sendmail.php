@@ -18,9 +18,32 @@ class Sendmail {
             $email->addContent("text/html", $html);
             $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
             try {
-                $response = $sendgrid->send($email);
+                $sendgrid->send($email);
             } catch (Exception $e) {
                 echo 'Caught exception: '. $e->getMessage() ."\n";
+            }
+        }
+
+        public function sendGridDynamic($toEmail, $toName, $subject, $fullname, $id)
+        {
+            $email = new \SendGrid\Mail\Mail();
+            $email->setFrom($this->fromEmail, $this->fromName);
+            $email->setSubject($subject);
+            $email->addTo(
+                $toEmail,
+                $toName,
+                [
+                    "fullname" => $fullname,
+                    "ID" => $id
+                ],
+                0
+            );
+            $email->setTemplateId("d-e60395fa29584b0bb352cf7a18dbddd4");
+            $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+            try {
+                $sendgrid->send($email);
+            } catch (Exception $e) {
+                echo 'Caught exception: '.  $e->getMessage(). "\n";
             }
         }
 
