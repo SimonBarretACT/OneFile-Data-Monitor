@@ -88,48 +88,62 @@ class Unarchive extends MY_Controller
 			]]);
 		$sessionKey = $response->getBody();
 
-		$response = $client->request('POST', "User/$id/Unarchive",
-		[
-			'headers' => [
-			'X-TokenID' => strval($sessionKey),
-			'Content-Type' => 'application/x-www-form-urlencoded'
-			],
-			'form_params' => [
-				'role' => 1,
-				'organisationID' => $organisationId
-			]
-		]);	
+
+		try {
+			$response = $client->request('POST', "User/$id/Unarchive",
+			[
+				'headers' => [
+				'X-TokenID' => strval($sessionKey),
+				'Content-Type' => 'application/x-www-form-urlencoded'
+				],
+				'form_params' => [
+					'role' => 1,
+					'organisationID' => $organisationId
+				]
+			]);	
+			
+			//Get the candidates for updaing
+			$query = new Parse\ParseQuery("Archive");
+			$query->descending("createdAt");
+			$object = $query->first();
+	
+			$candidates = $object->get("records");
+			$archived = $object->get("archived");
+	
+			if (!$archived):
+				$archived = [];
+			endif;
+	
+			//Find the record to update
+			$recordIndex = search_records($archived, false, $id, 'UserID');
+	
+			//Remove record and save
+			if ($recordIndex >= 0):
+				//Add to the candidates records
+				$candidates[] = $archived[$recordIndex];
+				unset($archived[$recordIndex]);
+				$object->setAssociativeArray("records", $candidates);
+				$object->setAssociativeArray("archived", $archived);
+				$object->save(true);
+			endif;
+
+			$error = false;
 		
-		//Get the candidates for updaing
-		$query = new Parse\ParseQuery("Archive");
-		$query->descending("createdAt");
-		$object = $query->first();
-
-		$candidates = $object->get("records");
-		$archived = $object->get("archived");
-
-		if (!$archived):
-			$archived = [];
-		endif;
-
-		//Find the record to update
-		$recordIndex = search_records($archived, false, $id, 'UserID');
-
-		//Remove record and save
-		if ($recordIndex >= 0):
-			//Add to the candidates records
-			$candidates[] = $archived[$recordIndex];
-			unset($archived[$recordIndex]);
-			$object->setAssociativeArray("records", $candidates);
-			$object->setAssociativeArray("archived", $archived);
-			$object->save(true);
-		endif;
+		} catch (Exception $e) {
+			$error = true;
+			echo 'Unarchive failed ', "\n";
+		}
+		
 
 		if (!$this->input->is_ajax_request()) {
 			$this->template->set_template('fullscreen');
 			// Set page specific title
 			$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
-			$this->template->write_view('content', 'unarchived', [], TRUE);
+			if ($error):
+				$this->template->write_view('content', 'unarchived', [], TRUE);
+			else:
+				$this->template->write_view('content', 'unarchived-failed', [], TRUE);
+			endif;
 			$this->template->render();			
 		}
 
