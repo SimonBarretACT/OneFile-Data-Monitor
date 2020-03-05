@@ -28,17 +28,21 @@ class MY_Controller extends CI_Controller {
 			die('Oops! There seems to be something wrong.');
         }
         
+        $this->currentUser = Parse\ParseUser::getCurrentUser();
+
         //Redirect if user is not signed in
-        if (($this->router->fetch_class() !='signin') and ($this->router->fetch_method() !='learner')):
-            $this->currentUser = Parse\ParseUser::getCurrentUser();
-            if (!$this->currentUser):
-                redirect('signin');
-            endif;
+        if ((!$this->currentUser) and ($this->router->fetch_class() !='signin') and ($this->router->fetch_method() !='learner')):
+            redirect('signin');
         endif;
 
         //Set user name
-        $this->data['name'] = $this->currentUser->get("name");
-        $this->data['avatar'] = $this->currentUser->get("avatar");
+        if ($this->currentUser):
+            $this->data['name'] = $this->currentUser->get("name");
+            $this->data['avatar'] = $this->currentUser->get("avatar");
+        else:
+            $this->data['name'] = 'Unknown';
+            $this->data['avatar'] = '';
+        endif;
 
         //default title
         $this->template->write('title', 'OneFile Data Monitor', TRUE);
@@ -50,7 +54,7 @@ class MY_Controller extends CI_Controller {
         $this->template->add_meta('keywords', 'OneFile,ACT Training');
 
         //it is better to include header and footer here because these will be used by every page
-        $this->template->write_view('header', 'templates/snippets/header');
+        $this->template->write_view('header', 'templates/snippets/header', $this->data);
         $this->template->write_view('footer', 'templates/snippets/footer');
     }
 

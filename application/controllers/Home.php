@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends MY_Controller {
 
 	function __construct() {
-        parent::__construct();
+		parent::__construct();
+
 	}
 	
 	/**
@@ -40,10 +41,10 @@ class Home extends MY_Controller {
 		else:
 			$this->data['allUsersYesterday'] 			= 0;
 			$this->data['activeUsersYesterday'] 		= 0;
-			$this->data['assessorsYesterday'] 		= 0;
-			$this->data['last7DaysYesterday'] 		= 0;
-			$this->data['lastMonthYesterday'] 		= 0;
-			$this->data['archiveCandidatesYesterday'] = 0;
+			$this->data['assessorsYesterday'] 			= 0;
+			$this->data['last7DaysYesterday'] 			= 0;
+			$this->data['lastMonthYesterday'] 			= 0;
+			$this->data['archiveCandidatesYesterday'] 	= 0;
 		endif;
 
 
