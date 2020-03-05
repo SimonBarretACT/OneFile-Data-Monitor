@@ -128,27 +128,15 @@ class Archive extends MY_Controller
 			$assessorEmail = '';
 		endif;
 
-		$assessorEmail = 'simon.barrett.act@gmail.com';
-		$userID = $candidates[$recordIndex]['UserID'];
-		$unarchive = base_url("unarchive/learner/$userID");
+		if ($assessorEmail):
+			$this->sendmail->sendGridDynamic(
+											$assessorEmail, 
+											$assessor, 
+											"$learner's OneFile Account has been archived", 
+											$learner,
+											$id);
+		endif;
 
-		$html  = "<p>If you think this is an error, please let me know or click the link below.</p>";
-		$html .= "<p><a href='$unarchive'>Unarchive $learner</a></p>";
-		$html .= "<p>Thanks <br/>Simon Barrett</p>";
-
-		$text = "If you think this is an error, please let me know.\n\n";
-		$text .= "Thanks,\n";
-		$text .= "Simon\n";
-
-
-		$this->sendmail->sendGridDynamic(
-										$assessorEmail, 
-										$assessor, 
-										"$learner's OneFile Account has been Archived", 
-										$learner,
-										$id);
-
-		
 		//Remove record and save
 		//Add to the archived records
 		$archived[] = $candidates[$recordIndex];

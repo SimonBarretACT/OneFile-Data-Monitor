@@ -4,8 +4,8 @@
             <div class="flex flex-row flex-wrap flex-grow mt-2">
 
             <div class="w-full p-3">
-                    <h1>Unarchived</h1>
-                    <p>Your learner has now been restored.</p>
+                    <h1 class="text-white text-center">Unarchived</h1>
+                    <p class="text-white text-center">Your learner has now been restored.</p>
             </div>
 
             </div>
