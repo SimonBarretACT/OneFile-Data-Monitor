@@ -4,7 +4,7 @@
             <div class="flex flex-row flex-wrap flex-grow mt-2">
 
             <div class="w-full p-3">
-                    <img class="text-center" height="100" width="100" src="<?=base_url('assets/img/undraw_done_a34v.svg');?>" />
+                    <img class="block mx-auto w-40" src="<?=base_url('assets/img/undraw_done_a34v.svg');?>" />
                     <h1 class="text-3xl text-white text-center">Unarchived</h1>
                     <p class="text-white text-center">Your learner has now been restored.</p>
             </div>
