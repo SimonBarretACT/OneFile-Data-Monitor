@@ -40,10 +40,10 @@ class Archive extends MY_Controller
 		$query->descending("createdAt");
 		$object = $query->first();
 
-		$data['candidates'] = $object->get("records");
+		$this->data['candidates'] = $object->get("records");
 
 		// sort on DateCreated
-		uasort($data['candidates'], function ($one, $two) {
+		uasort($this->data['candidates'], function ($one, $two) {
 			
 			$first = $one['DateCreated'];
 			$second = $two['DateCreated'];
@@ -58,7 +58,7 @@ class Archive extends MY_Controller
 		// Set page specific title
 		$this->template->write('title', 'OneFile Data Monitor : Archive', TRUE);
 
-		$this->template->write_view('content', 'archive', $data, TRUE);
+		$this->template->write_view('content', 'archive', $this->data, TRUE);
 		$this->template->render();
 	}
 

@@ -21,29 +21,29 @@ class Home extends MY_Controller {
 		
 		//set data for view
 		$object = $objects[0]; //First one
-		$data['allUsers'] 			= $object->get("allUsers");
-		$data['activeUsers'] 		= $object->get("activeUsers");
-		$data['assessors'] 			= $object->get("assessors");
-		$data['last7Days'] 			= $object->get("last7Days");
-		$data['lastMonth'] 			= $object->get("lastMonth");
-		$data['archiveCandidates'] 	= $object->get("archiveCandidates");
+		$this->data['allUsers'] 			= $object->get("allUsers");
+		$this->data['activeUsers'] 			= $object->get("activeUsers");
+		$this->data['assessors'] 			= $object->get("assessors");
+		$this->data['last7Days'] 			= $object->get("last7Days");
+		$this->data['lastMonth'] 			= $object->get("lastMonth");
+		$this->data['archiveCandidates'] 	= $object->get("archiveCandidates");
 
 		// Get yesterday
 		if (count($objects) > 1):
 			$yesterday = $objects[1]; //Second one
-			$data['allUsersYesterday'] 			= $yesterday->get("allUsers");
-			$data['activeUsersYesterday'] 		= $yesterday->get("activeUsers");
-			$data['assessorsYesterday'] 		= $yesterday->get("assessors");
-			$data['last7DaysYesterday'] 		= $yesterday->get("last7Days");
-			$data['lastMonthYesterday'] 		= $yesterday->get("lastMonth");
-			$data['archiveCandidatesYesterday'] = $yesterday->get("archiveCandidates");
+			$this->data['allUsersYesterday'] 			= $yesterday->get("allUsers");
+			$this->data['activeUsersYesterday'] 		= $yesterday->get("activeUsers");
+			$this->data['assessorsYesterday'] 			= $yesterday->get("assessors");
+			$this->data['last7DaysYesterday'] 			= $yesterday->get("last7Days");
+			$this->data['lastMonthYesterday'] 			= $yesterday->get("lastMonth");
+			$this->data['archiveCandidatesYesterday'] 	= $yesterday->get("archiveCandidates");
 		else:
-			$data['allUsersYesterday'] 			= 0;
-			$data['activeUsersYesterday'] 		= 0;
-			$data['assessorsYesterday'] 		= 0;
-			$data['last7DaysYesterday'] 		= 0;
-			$data['lastMonthYesterday'] 		= 0;
-			$data['archiveCandidatesYesterday'] = 0;
+			$this->data['allUsersYesterday'] 			= 0;
+			$this->data['activeUsersYesterday'] 		= 0;
+			$this->data['assessorsYesterday'] 		= 0;
+			$this->data['last7DaysYesterday'] 		= 0;
+			$this->data['lastMonthYesterday'] 		= 0;
+			$this->data['archiveCandidatesYesterday'] = 0;
 		endif;
 
 
@@ -59,7 +59,7 @@ class Home extends MY_Controller {
         //
 	    // $this->template->add_css('assets/css/page.css');
 	   
-        $this->template->write_view('content', 'home', $data, TRUE);
+        $this->template->write_view('content', 'home', $this->data, TRUE);
 		$this->template->render();
 			
 	}

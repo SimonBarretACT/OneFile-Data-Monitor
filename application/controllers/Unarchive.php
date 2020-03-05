@@ -40,11 +40,11 @@ class Unarchive extends MY_Controller
 		$query->descending("createdAt");
 		$object = $query->first();
 
-		$data['candidates'] = $object->get("archived");
+		$this->data['candidates'] = $object->get("archived");
 
-		if ($data['candidates']):
+		if ($this->data['candidates']):
 		// sort on DateCreated
-		uasort($data['candidates'], function ($one, $two) {
+		uasort($this->data['candidates'], function ($one, $two) {
 			
 			$first = $one['DateCreated'];
 			$second = $two['DateCreated'];
@@ -61,7 +61,7 @@ class Unarchive extends MY_Controller
 		// Set page specific title
 		$this->template->write('title', 'OneFile Data Monitor : Unarchive', TRUE);
 
-		$this->template->write_view('content', 'unarchive', $data, TRUE);
+		$this->template->write_view('content', 'unarchive', $this->data, TRUE);
 		$this->template->render();
 	}
 

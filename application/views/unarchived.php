@@ -9,7 +9,7 @@
                     <p class="text-white text-center">Your learner has now been restored.</p>
             </div>
 
-            </div>
+            </div>4
 								
 					
 		</div>

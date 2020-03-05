@@ -16,12 +16,12 @@ class Assessors extends MY_Controller
     public function index()
     {
         
-        $data['assessors'] = $this->users_model->getRecords('assessors');
+        $this->data['assessors'] = $this->users_model->getRecords('assessors');
         
 		// Set page specific title
 		$this->template->write('title', 'OneFile Data Monitor : Assessors', TRUE);
 
-		$this->template->write_view('content', 'assessors', $data, TRUE);
+		$this->template->write_view('content', 'assessors', $this->data, TRUE);
 		$this->template->render();
     }
     

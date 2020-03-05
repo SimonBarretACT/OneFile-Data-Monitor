@@ -9,6 +9,9 @@
  */
 class MY_Controller extends CI_Controller {
 
+    protected $currentUser;
+    protected $data;
+
     function __construct() {
         parent::__construct();
 
@@ -27,11 +30,15 @@ class MY_Controller extends CI_Controller {
         
         //Redirect if user is not signed in
         if (($this->router->fetch_class() !='signin') and ($this->router->fetch_method() !='learner')):
-            $currentUser = Parse\ParseUser::getCurrentUser();
-            if (!$currentUser):
+            $this->currentUser = Parse\ParseUser::getCurrentUser();
+            if (!$this->currentUser):
                 redirect('signin');
             endif;
         endif;
+
+        //Set user name
+        $this->data['name'] = $this->currentUser->get("name");
+        $this->data['avatar'] = $this->currentUser->get("avatar");
 
         //default title
         $this->template->write('title', 'OneFile Data Monitor', TRUE);
