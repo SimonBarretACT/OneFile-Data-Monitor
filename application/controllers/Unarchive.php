@@ -131,7 +131,6 @@ class Unarchive extends MY_Controller
 		
 		} catch (Exception $e) {
 			$error = true;
-			echo 'Unarchive failed ', "\n";
 		}
 		
 
@@ -139,7 +138,7 @@ class Unarchive extends MY_Controller
 			$this->template->set_template('fullscreen');
 			// Set page specific title
 			$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
-			if ($error):
+			if (!$error):
 				$this->template->write_view('content', 'unarchived', [], TRUE);
 			else:
 				$this->template->write_view('content', 'unarchived-failed', [], TRUE);
