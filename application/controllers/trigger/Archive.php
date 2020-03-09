@@ -102,10 +102,12 @@ class Archive extends CI_Controller {
 
 		foreach ($candidates as $candidate):
 
-			//Wait to avoid api limit
-			usleep(750000);
+			if (!$this->whitelist->islocked($candidate['ID'])):
+				//Wait to avoid api limit
+				usleep(750000);
 
-			$this->archiver->archive($candidate['ID']);
+				$this->archiver->archive($candidate['ID']);
+			endif;
 
 		endforeach;
 

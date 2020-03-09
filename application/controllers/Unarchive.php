@@ -99,7 +99,7 @@ class Unarchive extends MY_Controller
 	{
 
 		// Set file properties
-		$trainees = 'unarchive.csv';
+		$trainees = $filename;
 		$local_path = APPPATH . '/import/';
 
 		// Fetch Unarchive records 

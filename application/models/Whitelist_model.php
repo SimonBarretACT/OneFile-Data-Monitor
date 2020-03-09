@@ -30,7 +30,6 @@ public function __construct()
 		
 		$object = new Parse\ParseObject("Whitelist");
 
-		
 		//Using PHP's DateTime object to add 30 days
 		//to a given date.
 		$date = new DateTime();
@@ -53,5 +52,13 @@ public function __construct()
 		}
     }
 
+    public function islocked($id)
+    {
+		$query = new Parse\ParseQuery("Whitelist");
+		$query->equalTo("id", intval($id));
+		$results = $query->find();
 
+		return ($results and (count($results) > 0))
+
+	}
 }
