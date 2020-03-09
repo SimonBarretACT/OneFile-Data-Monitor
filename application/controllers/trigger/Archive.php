@@ -86,4 +86,29 @@ class Archive extends CI_Controller {
 		echo 'Success: The data was retrieved and stored.';
 
 	}
+
+	/**
+	 * Auto archive
+	 *
+	 */
+	public function auto() {
+
+		//Get the candidates for archiving
+		$query = new Parse\ParseQuery("Archive");
+		$query->descending("createdAt");
+		$object = $query->first();
+
+		$candidates = $object->get("records");
+
+		foreach ($candidates as $candidate):
+
+			//Wait to avoid api limit
+			usleep(750000);
+
+			$this->archiver->archive($candidate['ID']);
+
+		endforeach;
+
+	}
+
 }

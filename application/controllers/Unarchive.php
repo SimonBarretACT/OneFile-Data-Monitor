@@ -71,74 +71,13 @@ class Unarchive extends MY_Controller
 	 */
 	public function learner($id)
 	{
-
-		$base_url 		= $this->config->item('onefile_base_url');
-		$token 			= $this->config->item('onefile_customer_token');
-		$organisationId = $this->config->item('onefile_organisation_id'); 
-
-		$client = new Client([
-			// Base URI is used with relative requests
-			'base_uri' => $base_url
-		]);
-
-		$response = $client->request('POST', 'Authentication',
-		['headers' => [
-			'X-CustomerToken' => $token,
-			'Content-Type' => 'application/x-www-form-urlencoded'
-			]]);
-		$sessionKey = $response->getBody();
-
-
-		try {
-			$response = $client->request('POST', "User/$id/Unarchive",
-			[
-				'headers' => [
-				'X-TokenID' => strval($sessionKey),
-				'Content-Type' => 'application/x-www-form-urlencoded'
-				],
-				'form_params' => [
-					'role' => 1,
-					'organisationID' => $organisationId
-				]
-			]);	
-			
-			//Get the candidates for updaing
-			$query = new Parse\ParseQuery("Archive");
-			$query->descending("createdAt");
-			$object = $query->first();
-	
-			$candidates = $object->get("records");
-			$archived = $object->get("archived");
-	
-			if (!$archived):
-				$archived = [];
-			endif;
-	
-			//Find the record to update
-			$recordIndex = search_records($archived, false, $id, 'UserID');
-	
-			//Remove record and save
-			if ($recordIndex >= 0):
-				//Add to the candidates records
-				$candidates[] = $archived[$recordIndex];
-				unset($archived[$recordIndex]);
-				$object->setAssociativeArray("records", $candidates);
-				$object->setAssociativeArray("archived", $archived);
-				$object->save(true);
-			endif;
-
-			$error = false;
-		
-		} catch (Exception $e) {
-			$error = true;
-		}
-		
+		$success = $this->archiver->unarchive($id);	
 
 		if (!$this->input->is_ajax_request()) {
 			$this->template->set_template('fullscreen');
 			// Set page specific title
 			$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
-			if (!$error):
+			if ($success):
 				$this->template->write_view('content', 'unarchived', [], TRUE);
 			else:
 				$this->template->write_view('content', 'unarchived-failed', [], TRUE);
