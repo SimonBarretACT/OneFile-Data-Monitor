@@ -54,8 +54,8 @@ class Archiver {
     public function archive($id)
     {
 
-
-		$response = $this->client->request('POST', "User/$id/Archive",
+		try {
+		$this->client->request('POST', "User/$id/Archive",
 		[
 			'headers' => [
 			'X-TokenID' => strval($this->sessionKey),
@@ -112,7 +112,13 @@ class Archiver {
 		$object->setAssociativeArray("archived", $archived);
 		$object->save(true);
 
-		endif;
+        endif;
+
+        return true;
+        
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function unarchive($id)
