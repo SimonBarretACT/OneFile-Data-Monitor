@@ -35,10 +35,7 @@ class Archive extends MY_Controller
 	 */
 	public function index()
 	{
-
-		$this->whitelist->account("1234");
-		die();
-
+		
 		$query = new Parse\ParseQuery("Archive");
 		$query->descending("createdAt");
 		$object = $query->first();
