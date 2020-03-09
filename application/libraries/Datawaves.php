@@ -19,7 +19,7 @@ class Datawaves {
 		//Authenticate
 		$response = $this->client->request('POST', 'Authentication',
 		['headers' => [
-			'Authorization' => 'e2b038a7a816ft1$sHegwn8vbu0fEWaQ4f80afdb7e5384885460',
+			'Authorization' => $this->config->item('datawaves_secret'),
 			'Content-Type' => 'application/x-www-form-urlencoded'
             ]
         ]);

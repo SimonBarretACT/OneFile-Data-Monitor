@@ -104,9 +104,9 @@ $autoload['helper'] = array('url', 'form', 'mailgun', 'html', 'array');
 |
 */
 if (file_exists(APPPATH . 'config/parse_local.php')):
-    $autoload['config'] = array('app', 'parse_local', 'mailgun_local', 'onefile_local');            
+    $autoload['config'] = array('app', 'parse_local', 'mailgun_local', 'onefile_local', 'datawaves_local');            
 else:
-    $autoload['config'] = array('app', 'parse', 'mailgun', 'onefile');
+    $autoload['config'] = array('app', 'parse', 'mailgun', 'onefile', 'datawaves');
 endif;
 
 /*
