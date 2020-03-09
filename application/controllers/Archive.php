@@ -72,6 +72,37 @@ class Archive extends MY_Controller
 			exit('No direct script access allowed');
 		}
 
+		$this->_archiver($id);
+	
+	}
+
+	/**
+	 * Auto archive
+	 *
+	 */
+	public function auto() {
+
+		//Get the candidates for archiving
+		$query = new Parse\ParseQuery("Archive");
+		$query->descending("createdAt");
+		$object = $query->first();
+
+		$candidates = $object->get("records");
+
+		foreach ($candidates as $candidate):
+
+			//Wait to avoid api limit
+			usleep(750000);
+
+			$this->_archiver($candidate['ID']);
+
+		endforeach;
+
+	}
+
+
+	private function _archiver($id)
+	{
 		$base_url = $this->config->item('onefile_base_url');
 		$token = $this->config->item('onefile_customer_token');
 		$organisationId = $this->config->item('onefile_organisation_id'); 
@@ -148,6 +179,5 @@ class Archive extends MY_Controller
 		endif;
 
 	}
-
 
 }
