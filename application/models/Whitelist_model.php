@@ -40,7 +40,7 @@ public function __construct()
 		//Add the DateInterval object to our DateTime object.
 		$date->add($interval);
 
-		$object->set("id", $id);
+		$object->set("oneFileId", intval($id));
 		$object->set("untilDate", $date);
 		
 		try {
@@ -55,10 +55,10 @@ public function __construct()
     public function islocked($id)
     {
 		$query = new Parse\ParseQuery("Whitelist");
-		$query->equalTo("id", intval($id));
+		$query->equalTo("oneFileId", intval($id));
 		$results = $query->find();
 
-		return ($results and (count($results) > 0))
+		return ($results and (count($results) > 0));
 
 	}
 }
