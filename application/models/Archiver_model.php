@@ -3,24 +3,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use GuzzleHttp\Client;
 
-class Archiver {
+class Archiver_model extends CI_Model {
 
-    protected $parse_appid;
-	protected $parse_masterkey;
-	protected $parse_server;
-	protected $parse_path;
+protected $parse_appid;
+protected $parse_masterkey;
+protected $parse_server;
+protected $parse_path;
 
-    protected $base_url;
-    protected $token;
-    protected $organisationId; 
+protected $base_url;
+protected $token;
+protected $organisationId; 
 
-    protected $client;
-    protected $sessionKey;
+protected $client;
+protected $sessionKey;
 
-	public function __construct()
+
+public function __construct()
 	{
-			parent::__construct();
-			
 			$this->parse_appid 		= $this->config->item('parse_appid');
 			$this->parse_masterkey 	= $this->config->item('parse_masterkey');
 			$this->parse_server 	= $this->config->item('parse_server');
@@ -169,5 +168,6 @@ class Archiver {
 		}
 
     }
+
 
 }

@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH . 'third_party/DevelBar');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('csv', 'ftps', 'template', 'session', 'sendmail', 'archiver');
+$autoload['libraries'] = array('csv', 'ftps', 'template', 'session', 'sendmail');
 
 /*
 | -------------------------------------------------------------------
@@ -136,4 +136,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Onefile_model' => 'onefile');
+$autoload['model'] = array('Onefile_model' => 'onefile', 'Archiver_model' => 'archiver', 'Whitelist_model' => 'whitelist');

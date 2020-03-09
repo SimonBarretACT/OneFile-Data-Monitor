@@ -85,6 +85,10 @@ class Unarchive extends MY_Controller
 			$this->template->render();			
 		}
 
+		if ($success):
+			$this->whitelist->account($id);
+		endif;
+
 	}
 
 	/**
