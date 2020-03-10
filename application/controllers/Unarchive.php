@@ -35,7 +35,10 @@ class Unarchive extends MY_Controller
 	 */
 	public function index()
 	{
-
+        if (!$this->currentUser):
+            redirect('signin');
+		endif;
+		
 		$query = new Parse\ParseQuery("Archive");
 		$query->descending("createdAt");
 		$object = $query->first();
@@ -99,6 +102,10 @@ class Unarchive extends MY_Controller
 	public function list($classroom=57911, $filename='unarchive.csv')
 	{
 
+		if (!$this->currentUser):
+            redirect('signin');
+		endif;
+		
 		// Set file properties
 		$trainees = $filename;
 		$local_path = APPPATH . '/import/';

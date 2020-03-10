@@ -31,9 +31,14 @@ class MY_Controller extends CI_Controller {
         $this->currentUser = Parse\ParseUser::getCurrentUser();
 
         //Redirect if user is not signed in
-        if ((!$this->currentUser) and ($this->router->fetch_class() !='signin') and ($this->router->fetch_method() !='learner')):
+        if ((!$this->currentUser) and 
+            ($this->router->fetch_class() != 'unarchive') and 
+            ($this->router->fetch_class() != 'signin') and 
+            ($this->router->fetch_method() != 'learner')):
             redirect('signin');
         endif;
+
+
 
         //Set user name
         if ($this->currentUser):
