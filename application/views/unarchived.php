@@ -7,7 +7,7 @@ echo form_open('unarchive/message', $attributes); ?>
 <?=form_hidden('learnerId', $learnerId);?>
 
   <img class="block mx-auto w-40 pb-4" src="<?=base_url('assets/img/undraw_done_a34v.svg');?>" />
-<h1 class="text-3xl text-blue-800 text-center">Unarchived</h1>
+<h1 class="text-3xl text-blue-800 text-center">Success</h1>
                     <p class="text-blue-700 text-center pb-3">Your learner has now been restored.</p>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm mb-2" for="username">
@@ -21,7 +21,7 @@ echo form_open('unarchive/message', $attributes); ?>
       </button>
     </div>
   </form>
-  <p class="text-center text-gray-500 text-xs">
+  <p class="text-center text-blue-800 text-xs">
     &copy;2020 ACT Training Ltd. All rights reserved.
   </p>
 </div>
