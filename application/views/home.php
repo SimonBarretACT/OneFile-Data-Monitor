@@ -68,14 +68,14 @@
 
                 <div class="w-full md:w-1/2 xl:w-1/3 p-3">
                     <!--Metric Card-->
-                    <a href="archive">
+                    <a href="unarchive">
                     <div class="bg-white border rounded shadow p-2">
                         <div class="flex flex-row items-center">
                             <div class="flex-shrink pr-4">
                                 <div class="rounded p-3 bg-red-600"><i class="fas fa-archive fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-500">Archive Candidates</h5>
+                                <h5 class="font-bold uppercase text-gray-500">Archived</h5>
                                 <h3 class="font-bold text-3xl"><?=$archiveCandidates;?> <?=trendIndicator($archiveCandidates, $archiveCandidatesYesterday);?></h3>
                             </div>
                         </div>
