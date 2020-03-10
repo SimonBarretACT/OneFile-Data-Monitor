@@ -78,7 +78,8 @@ class Unarchive extends MY_Controller
 			// Set page specific title
 			$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
 			if ($success):
-				$this->template->write_view('content', 'unarchived', [], TRUE);
+				$data['learnerId'] = $id;
+				$this->template->write_view('content', 'unarchived', $data, TRUE);
 			else:
 				$this->template->write_view('content', 'unarchived-failed', [], TRUE);
 			endif;
@@ -169,5 +170,37 @@ class Unarchive extends MY_Controller
 		
 	}
 
+	/**
+	 * Test Page for this controller.
+	 *
+	 */
+	public function test($success=1)
+	{
+		$this->template->set_template('fullscreen');
+		// Set page specific title
+		$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
+		if ($success):
+			$data['learnerId'] = 1234;
+			$this->template->write_view('content', 'unarchived', $data, TRUE);
+		else:
+			$this->template->write_view('content', 'unarchived-failed', [], TRUE);
+		endif;
+		$this->template->render();
+	}
+
+	public function message() {
+
+			$learnerId = $this->input->post('learnerId');
+			$comment = $this->input->post('comment');
+
+			$this->feedback->save($learnerId, $comment);
+
+			$this->template->set_template('fullscreen');
+			// Set page specific title
+			$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
+			$this->template->write_view('content', 'thank-you', [], TRUE);
+			$this->template->render();
+
+	}
 
 }

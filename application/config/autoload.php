@@ -140,4 +140,5 @@ $autoload['model'] = array('Onefile_model' => 'onefile',
                             'Archiver_model' => 'archiver', 
                             'Whitelist_model' => 'whitelist',
                             'Datawaves_model' => 'datawaves',
-                            'Message_model' => 'message');
+                            'Message_model' => 'message',
+                            'Feedback_model' => 'feedback');
