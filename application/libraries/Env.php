@@ -9,7 +9,9 @@ class Env
 {
     public function __construct()
     {
-        $dotenv = Dotenv\Dotenv::create(APPPATH . 'environment');
-        $dotenv->load();
+        if (file_exists(APPPATH . 'environment/.env')):
+            $dotenv = Dotenv\Dotenv::create(APPPATH . 'environment');
+            $dotenv->load();
+        endif;
     }
 }
