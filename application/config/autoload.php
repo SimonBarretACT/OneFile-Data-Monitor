@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH . 'third_party/DevelBar');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('csv', 'ftps', 'template', 'session', 'sendmail');
+$autoload['libraries'] = array('csv', 'ftps', 'template', 'session', 'sendmail', 'env');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'form', 'mailgun', 'html', 'array');
+$autoload['helper'] = array('url', 'form', 'mailgun', 'html', 'array', 'env');
 
 /*
 | -------------------------------------------------------------------
@@ -139,4 +139,5 @@ $autoload['language'] = array();
 $autoload['model'] = array('Onefile_model' => 'onefile', 
                             'Archiver_model' => 'archiver', 
                             'Whitelist_model' => 'whitelist',
-                            'Datawaves_model' => 'datawaves');
+                            'Datawaves_model' => 'datawaves',
+                            'Message_model' => 'message');

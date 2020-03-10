@@ -14,7 +14,8 @@
     "kriswallsmith/buzz": "^1.0",
     "nyholm/psr7": "^1.2",
     "minishlink/web-push": "^5.2.0",
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "vlucas/phpdotenv": "^3.6"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*",

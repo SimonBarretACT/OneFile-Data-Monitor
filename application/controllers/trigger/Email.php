@@ -48,28 +48,36 @@ class Email extends CI_Controller {
 
 			if (!$this->whitelist->islocked($candidate['UserID'])):
 				//Wait to avoid api limit
-				usleep(750000);
+				usleep(1500000);
 
-				$assessor = $candidate['DefaultAssessor'];
+				$assessorName = $candidate['DefaultAssessor'];
+
 				$learner = $candidate['FirstName'] . ' ' . $candidate['LastName'];
 		
-				$found = $this->onefile->getUserFromId($assessor);
-		
-				if (is_array($found) and count($found) > 0):
-					$assessorEmail = $found['Email'];
-				else:
-					$assessorEmail = '';
+				$found = $this->onefile->getUserByName($assessorName, 5);
+
+				$records = json_decode($found, true);
+				$assessorEmail = '';
+				$assessorId = 0;
+
+				if (is_array($records) and count($records) > 0):
+					$assessorId = $records[0]['ID'];
+					$assessor = json_decode($this->onefile->getUser($assessorId), true);
+					$assessorEmail = $assessor['Email'];
 				endif;
-		
+
+
+				echo "Send email to $assessorEmail".PHP_EOL;
+
 				if ($assessorEmail):
 					$this->sendmail->sendGridDynamic(
 													$assessorEmail, 
-													$assessor, 
+													$assessorName, 
 													"$learner's OneFile Account has been archived", 
 													$learner,
 													$id);
+					$this->message->save($assessorName, $assessorEmail, $candidate['UserID'], $assessorId);
 				endif;
-		
 
 			endif;
 

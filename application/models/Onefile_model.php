@@ -1,12 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use GuzzleHttp\Client;
+
 class Onefile_model extends CI_Model {
 
-    var $ci;
+    var    $client;
     public $sessionKey;
-    public $restclient;
-    public $onefileUrl;
+    public $customerToken;
     public $organisationID;
 
     public function __construct()
@@ -15,80 +16,180 @@ class Onefile_model extends CI_Model {
 
         // Set onefile api credentials
 
-        $this->ci =& get_instance();
-        if (file_exists(APPPATH . 'config/onefile_local.php')):
-            $this->ci->config->load('onefile_local');            
-        else:
-            $this->ci->config->load('onefile');
-        endif;
-
+        //Create Guzzle Client
+		$this->client = new Client([
+			// Base URI is used with relative requests
+			'base_uri' => env('ONEFILE_BASE_URL')
+        ]);
+        
         // organisationID
-        $this->organisationID = $this->ci->config->item('onefile_organisation_id');
+        $this->organisationID = env('ONEFILE_ORGANISATION_ID');
 
-        //X-CustomerToken
-        $customerToken  = $this->ci->config->item('onefile_customer_token');
+        //api token
+        $this->customerToken  = env('ONEFILE_API_KEY');
 
-        //Headers
-        $headers = array('header' => array('X-CustomerToken' => $customerToken));
+		//Authenticate
+		$response = $this->client->request('POST', 'Authentication',
+		['headers' => [
+			'X-CustomerToken' => $this->customerToken,
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			]]);
+		$this->sessionKey = $response->getBody();
+
+    }
+
+	public function getUser($id=0) {
+		
+		//Request Learner
+		$response = $this->client->request('GET', "User/$id",
+		[
+			'headers' => [
+			'X-TokenID' => strval($this->sessionKey),
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			],
+			'form_params' => [
+				'OrganisationID' => $this->organisationID
+			]
+		]);
+
+		//Return User
+		return (string) $response->getBody();
         
-        //Load restclient
-        $this->ci->load
-            ->add_package_path(APPPATH . '../vendor/maltyxx/restclient')
-            ->library('Restclient', $headers)
-            ->remove_package_path(APPPATH . '../vendor/maltyxx/restclient');
+	}
+
+	public function getUserByName($name, $role=1) {
+		
+		$pieces = explode(" ", $name);
+
+		$lastname = $pieces[1];
+		$firstname = $pieces[0];
+
+		//Request User by name
+		$response = $this->client->request('POST', "User/Search",
+		[
+			'headers' => [
+			'X-TokenID' => strval($this->sessionKey),
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			],
+			'form_params' => [
+				'LastName' => $lastname,
+				'FirstName' => $firstname,
+				'Role' => $role,
+				'OrganisationID' => $this->organisationID
+			]
+		]);
+
+		//Return User
+		return (string) $response->getBody();
         
-        // Get the onefile url
-        $this->onefileUrl = $this->ci->config->item('onefile_base_url');
+	}
 
-        //Get the session key
-        $this->sessionKey = $this->ci->restclient->post($this->onefileUrl . 'Authentication', json_encode([]));
+	public function getUsers($role=1) {
+		
+		//Set parameters
+		$parameters = [
+			'role' => $role,
+			'organisationID' => $this->organisationID
+		];
 
-        //Initialise headers with session key
-        $headers = array('header' => array('X-TokenID' => $this->sessionKey));
+		//Request Learner
+		$response = $this->client->request('POST', "User/Search",
+		[
+			'headers' => [
+			'X-TokenID' => strval($this->sessionKey),
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			],
+			'form_params' => $parameters
+		]);
+
+		//Return Users
+		return $response->getBody();
         
-        //Create instance
-        $this->restclient = new restclient($headers);
+	}
+	
+	public function createUser($newParameters) {
+		//Set parameters
+		$basicParameters = [
+			'organisationID' => $this->organisationID
+		];
 
-    }
+		$parameters = array_merge($basicParameters, $newParameters);
 
-    public function getUserFromId($id)
-    {
-        return $this->restclient->get($this->onefileUrl . 'User/' . $id, []);
-    }
+		//Request Learner
+		$response = $this->client->request('POST', "User",
+		[
+			'headers' => [
+			'X-TokenID' => strval($this->sessionKey),
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			],
+			'form_params' => $parameters
+		]);
 
-    public function archiveUserFromId($id)
-    {
-        return $this->restclient->post($this->onefileUrl . 'User/' . $id . '/Archive', json_encode(array(
-            'organisationID' => $this->organisationID
-        )));
+		//Return response
+		return $response->getBody();
 
-    }
+	}
 
-    public function unarchiveUserFromId($id)
-    {
-        return $this->restclient->post($this->onefileUrl . 'User/' . $id . '/Unarchive', json_encode(array(
-            'organisationID' => $this->organisationID
-        )));
+  	public function updateUser($id, $updatedParameters) {
+		
+		//Set parameters
+		$basicParameters = [
+			'organisationID' => $this->organisationID
+		];
 
-    }
+		$parameters = array_merge($basicParameters, $updatedParameters);
 
-    public function getUsers($role = 1, $page = 1, $perPage = 50)
-    {
-        return $this->restclient->post($this->onefileUrl . 'User/Search/' . $page .'/' . $perPage, 
-                                    ['role' => $role, 
-                                        'organisationID' => $this->organisationID]);
-    }
+		//Request Learner
+		$response = $this->client->request('POST', "User/$id",
+		[
+			'headers' => [
+			'X-TokenID' => strval($this->sessionKey),
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			],
+			'form_params' => $parameters
+		]);
 
-    public function getUserByName($role, $fullname)
-    {
-        $name = explode(" ", $fullname);
+		//Return User
+		return $response->getBody();
+    
+  }
 
-        return $this->restclient->post($this->onefileUrl . 'User/Search/1/50', 
-                            ['role' => $role, 
-                                        'organisationID' => $this->organisationID, 
-                                        'FirstName' => $name[0], 
-                                        'LastName' => $name[1]
-                                        ]);
-    }
+	public function deleteUser($id) {
+
+			//Set parameters
+			$basicParameters = [
+				'organisationID' => $this->organisationID
+			];
+
+			//Delete Learner
+			$response = $this->client->request('DELETE', "User/$id",
+			[
+				'headers' => [
+				'X-TokenID' => strval($this->sessionKey),
+				'Content-Type' => 'application/x-www-form-urlencoded'
+				],
+				'form_params' => $basicParameters
+			]);
+
+	}
+
+	public function archiveUser($id) {
+
+		//Set parameters
+		$basicParameters = [
+			'organisationID' => $this->organisationID
+		];
+
+		//Archive User
+		$response = $this->client->request('POST', "User/$id/Archive",
+		[
+			'headers' => [
+			'X-TokenID' => strval($this->sessionKey),
+			'Content-Type' => 'application/x-www-form-urlencoded'
+			],
+			'form_params' => $basicParameters
+		]);
+
+}
 
 }

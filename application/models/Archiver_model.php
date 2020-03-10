@@ -83,24 +83,29 @@ public function __construct()
 		
 		if ($recordIndex >= 0):
 
-		$assessor = $candidates[$recordIndex]['DefaultAssessor'];
+		$assessorName = $candidates[$recordIndex]['DefaultAssessor'];
 		$learner = $candidates[$recordIndex]['FirstName'] . ' ' . $candidates[$recordIndex]['LastName'];
 
-		$found = $this->onefile->getUserFromId($assessor);
+		$found = $this->onefile->getUserByName($assessorName, 5);
 
-		if (is_array($found) and count($found) > 0):
-			$assessorEmail = $found['Email'];
-		else:
-			$assessorEmail = '';
+		$records = json_decode($found, true);
+		$assessorEmail = '';
+		$assessorId = 0;
+
+		if (is_array($records) and count($records) > 0):
+			$assessorId = $records[0]['ID'];
+			$assessor = json_decode($this->onefile->getUser($assessorId), true);
+			$assessorEmail = $assessor['Email'];
 		endif;
 
 		if ($assessorEmail):
 			$this->sendmail->sendGridDynamic(
 											$assessorEmail, 
-											$assessor, 
+											$assessorName, 
 											"$learner's OneFile Account has been archived", 
 											$learner,
 											$id);
+			$this->message->save($assessorName, $assessorEmail, $id, $assessorId);
 		endif;
 
 		//Remove record and save
