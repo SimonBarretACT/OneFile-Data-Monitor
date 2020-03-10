@@ -15,6 +15,8 @@ class Home extends MY_Controller {
 	public function index()
 	{
 
+		//$this->datawaves->recordEvent('Test', array('id' => 123, 'product' => 'iPhone X'));
+
 		$query = new Parse\ParseQuery("Snapshot");
 		$query->descending("createdAt");
 		$query->limit(2); // limit to at most 2 results

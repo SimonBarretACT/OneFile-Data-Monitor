@@ -136,4 +136,7 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Onefile_model' => 'onefile', 'Archiver_model' => 'archiver', 'Whitelist_model' => 'whitelist');
+$autoload['model'] = array('Onefile_model' => 'onefile', 
+                            'Archiver_model' => 'archiver', 
+                            'Whitelist_model' => 'whitelist',
+                            'Datawaves_model' => 'datawaves');
