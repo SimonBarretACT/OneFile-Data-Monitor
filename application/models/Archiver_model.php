@@ -86,10 +86,10 @@ public function __construct()
 		$assessor = $candidates[$recordIndex]['DefaultAssessor'];
 		$learner = $candidates[$recordIndex]['FirstName'] . ' ' . $candidates[$recordIndex]['LastName'];
 
-		$found = $this->onefile->getUserByName(5, $assessor);
+		$found = $this->onefile->getUserFromId($assessor);
 
 		if (is_array($found) and count($found) > 0):
-			$assessorEmail = $found[0]['Email'];
+			$assessorEmail = $found['Email'];
 		else:
 			$assessorEmail = '';
 		endif;
