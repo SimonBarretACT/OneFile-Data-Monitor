@@ -22,6 +22,13 @@ else :
     $config['archive_review']   = '30 days';
 endif;
 
+//Archive status
+if (getenv('ARCHIVE_STATUS')) :
+    $config['archive_status']   = getenv('ARCHIVE_STATUS');
+else :
+    $config['archive_status']   = 'Archive';
+endif;
+
 // Trend indicators
 $config['trend_equal']  = '<span class="text-orange-500"><i class="fas fa-exchange-alt"></i></span>';
 $config['trend_up']     = '<span class="text-green-500"><i class="fas fa-caret-up"></i></span>';

@@ -140,11 +140,17 @@ class MyIterator_Filter_Archive extends FilterIterator {
             $days       = $ci->config->item('archive_days');
             $modified   = $ci->config->item('archive_modified');
             $review     = $ci->config->item('archive_review');
-            
-            // Find users who were created more than $days ago
-            $dateTime       = DateTime::createFromFormat('Y-m-d H:i:s', $value['DateCreated']);
-            $dateCreated    = new DateTime($days);
-            $return         = ($dateTime < $dateCreated);
+            $status     = $ci->config->item('archive_status');
+ 
+            // Find users who have a status set to $status
+            $return = ($value['LearnerStatus'] !== $status);
+
+            if ($return):
+                // Find users who were created more than $days ago
+                $dateTime       = DateTime::createFromFormat('Y-m-d H:i:s', $value['DateCreated']);
+                $dateCreated    = new DateTime($days);
+                $return         = ($dateTime < $dateCreated);
+            endif;
 
             if ($return):
                 // Find users who have not logged in in the last $days
@@ -166,6 +172,11 @@ class MyIterator_Filter_Archive extends FilterIterator {
                 $dateReviewLimit = new DateTime($review);
                 $dateNow = new DateTime('now');
                 $return = !(($dateReview < $dateReviewLimit) and ($dateReview >= $dateNow));
+            endif;
+
+            if ($return):
+                // Find users who have a status set to $status
+                $return = ($value['LearnerStatus'] !== $status);
             endif;
 
             return $return;
