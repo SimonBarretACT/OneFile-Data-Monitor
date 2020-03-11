@@ -24,6 +24,22 @@ public function accept() {
 
 }
 
+class MyIterator_Filter_Whitelist extends FilterIterator {
+
+    public function accept() {
+        $value = $this->current();
+
+        if (array_key_exists('UserID', $value)
+            && 
+            $this->whitelist->islocked($value['UserID'])) {
+            return false;
+            }
+    
+        return true;
+    }
+    
+    }
+
 class MyIterator_Filter_Assessor extends FilterIterator {
 
     public function accept() {

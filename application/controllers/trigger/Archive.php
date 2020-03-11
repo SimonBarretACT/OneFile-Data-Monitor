@@ -35,6 +35,11 @@ class Archive extends CI_Controller {
 			$this->csv->getRecords($local_path . $user)
 		);
 
+		// Remove all whitelist accounts
+		$userRecords = new MyIterator_Filter_Whitelist(
+			$userRecords
+		);
+
 		//Find archive candidates
 		$archiveRecords = new MyIterator_Filter_Archive(
 			$userRecords
