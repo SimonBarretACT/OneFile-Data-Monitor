@@ -51,29 +51,8 @@ class Archive extends CI_Controller {
 		$data['weekNumber']			= (int) date('W');
 		$data['yearNumber']			= (int) date('Y');
 
-		//Check if there is already a snapshot for today
-		$query = new Parse\ParseQuery("Snapshot");
-		$query->equalTo("dayNumber", $data['dayNumber']);
-		$query->equalTo("weekNumber", $data['weekNumber']);
-		$query->equalTo("yearNumber", $data['yearNumber']);
-		$snapshot = $query->first();
-
-		if (!$snapshot):
-			$snapshot = new Parse\ParseObject("Snapshot");
-			$snapshot->set("dayNumber", 		$data['dayNumber']);
-			$snapshot->set("weekNumber", 		$data['weekNumber']);
-			$snapshot->set("yearNumber", 		$data['yearNumber']);
-		endif;
-
-		$snapshot->set("archiveCandidates", $data['archiveCandidates']);
-
-		try {
-		  $snapshot->save(true);
-		} catch (Parse\ParseException $ex) {  
-		  // Execute any logic that should take place if the save fails.
-		  // error is a ParseException object with an error code and message.
-		  echo 'Failed to create new object, with error message: ' . $ex->getMessage();
-		}
+		//Save the snapshot
+		$this->snapshot->save($data);
 
 		$archive = new Parse\ParseObject("Archive");
 		$archive->setAssociativeArray("records", iterator_to_array($archiveRecords, false));
@@ -124,6 +103,12 @@ class Archive extends CI_Controller {
 		$plain = "$count accounts have been archived.";
 
 		$this->sendmail->sendGrid('simonbarrett@acttraining.org.uk', 'Simon Barrett', 'Auto-Archive', $html, $plain);
+
+		//Set data for snapshot
+		$data['archiveCandidates'] 	= $count;
+
+		//Save the snapshot
+		$this->snapshot->save($data);
 
 	}
 

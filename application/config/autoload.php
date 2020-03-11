@@ -136,9 +136,10 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Onefile_model' => 'onefile', 
-                            'Archiver_model' => 'archiver', 
-                            'Whitelist_model' => 'whitelist',
-                            'Datawaves_model' => 'datawaves',
-                            'Message_model' => 'message',
-                            'Feedback_model' => 'feedback');
+$autoload['model'] = array('Onefile_model'      => 'onefile', 
+                            'Archiver_model'    => 'archiver', 
+                            'Whitelist_model'   => 'whitelist',
+                            'Datawaves_model'   => 'datawaves',
+                            'Message_model'     => 'message',
+                            'Feedback_model'    => 'feedback',
+                            'Snapshot_model'    => 'snapshot');
