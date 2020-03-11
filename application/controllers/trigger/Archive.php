@@ -113,8 +113,9 @@ class Archive extends CI_Controller {
 				//Wait to avoid api limit
 				usleep(750000);
 
-				$this->archiver->archive($candidate['UserID']);
-				$count++;
+				if ($this->archiver->archive($candidate['UserID'])):
+					$count++;
+				endif;
 			endif;
 
 		endforeach;
