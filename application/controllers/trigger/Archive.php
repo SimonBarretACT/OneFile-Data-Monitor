@@ -98,6 +98,8 @@ class Archive extends CI_Controller {
 	 */
 	public function auto() {
 
+		$count = 0;
+
 		//Get the candidates for archiving
 		$query = new Parse\ParseQuery("Archive");
 		$query->descending("createdAt");
@@ -112,9 +114,15 @@ class Archive extends CI_Controller {
 				usleep(750000);
 
 				$this->archiver->archive($candidate['UserID']);
+				$count++;
 			endif;
 
 		endforeach;
+
+		$html = "<p>$count accounts have been archived.</p>";
+		$plain = "$count accounts have been archived.";
+
+		$this->sendmail->sendGrid('simonbarrett@acttraining.org.uk', 'Simon Barrett', 'Auto-Archive', $html, $plain);
 
 	}
 
