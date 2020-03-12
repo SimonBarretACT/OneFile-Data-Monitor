@@ -25,7 +25,7 @@ public function __construct()
 
     }
 
-    public function account($id)
+    public function account($id, $days=30)
     {
 		
 		$object = new Parse\ParseObject("Whitelist");
@@ -35,7 +35,7 @@ public function __construct()
 		$date = new DateTime();
 		
 		//Create a new DateInterval object using P30D.
-		$interval = new DateInterval('P30D');
+		$interval = new DateInterval('P' . $days . 'D');
 		
 		//Add the DateInterval object to our DateTime object.
 		$date->add($interval);

@@ -76,7 +76,7 @@ class Unarchive extends MY_Controller
 	{
 		$success = $this->archiver->unarchive($id);	
 
-		if (!$this->input->is_ajax_request()) {
+		if (!$this->input->is_ajax_request() AND !is_cli()) {
 			$this->template->set_template('fullscreen');
 			// Set page specific title
 			$this->template->write('title', 'OneFile Data Monitor : Unarchived', TRUE);
@@ -90,7 +90,7 @@ class Unarchive extends MY_Controller
 		}
 
 		if ($success):
-			$this->whitelist->account($id);
+			$this->whitelist->account($id, 60);
 		endif;
 
 	}
