@@ -138,15 +138,15 @@ class Archive extends CI_Controller {
 
 			//getUserByName
 			$found = $this->onefile->getUserByName($name);
-			var_dump($found);
+
 
 			if ($found !== ""):
 				$ratelimit();
 				$user = json_decode($found, true);
-				// if ($this->archiver->archive($user[])):
-				// 	$count++;
-				// 	$candidate->destroy();
-				// endif;
+				if ($this->archiver->archive($user[])):
+					$count++;
+					$candidate->destroy();
+				endif;
 			endif;
 
 		endforeach;
