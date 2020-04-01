@@ -89,7 +89,8 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'form', 'mailgun', 'html', 'array', 'env');
+$autoload['helper'] = array('url', 'form', 'mailgun', 'html', 'array', 
+                            'env', 'api');
 
 /*
 | -------------------------------------------------------------------
@@ -136,10 +137,10 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Onefile_model'      => 'onefile', 
+$autoload['model'] = array( 'Onefile_model'      => 'onefile', 
                             'Archiver_model'    => 'archiver', 
                             'Whitelist_model'   => 'whitelist',
                             'Datawaves_model'   => 'datawaves',
                             'Message_model'     => 'message',
                             'Feedback_model'    => 'feedback',
-                            'Snapshot_model'    => 'snapshot');
+                            'Snapshot_model'    => 'snapshot' );

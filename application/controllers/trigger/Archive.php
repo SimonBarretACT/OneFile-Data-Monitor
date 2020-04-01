@@ -112,4 +112,49 @@ class Archive extends CI_Controller {
 
 	}
 
+	/**
+	 * Auto archive
+	 *
+	 */
+	public function requests() {
+
+		$ratelimit = ratelimiter();
+
+		$count = 0;
+
+		//Get the candidates for archiving
+		$query = new Parse\ParseQuery("Request");
+		$candidates = $query->find();
+
+		foreach ($candidates as $candidate):
+
+			$firstname = $candidate->get('firstname');
+			$lastname = $candidate->get('lastname');
+
+			$name = "$firstname $lastname";
+			
+			//Wait to avoid api limit
+			$ratelimit();
+
+			//getUserByName
+			$found = $this->onefile->getUserByName($name);
+
+			if ($found):
+				$ratelimit();
+				if ($this->archiver->archive($found->get('id'))):
+					$count++;
+				endif;
+				$found->destroy();
+			endif;
+
+		endforeach;
+
+		$html = "<p>$count accounts have been archived.</p>";
+		$plain = "$count accounts have been archived.";
+
+		$this->sendmail->sendGrid('simonbarrett@acttraining.org.uk', 'Simon Barrett', 'Archive Requests', $html, $plain);
+
+
+	}
+
 }
