@@ -50,7 +50,7 @@ public function __construct()
 
     }
 
-    public function archive($id)
+    public function archive($id, $sendEmail=true)
     {
 
 		try {
@@ -98,7 +98,7 @@ public function __construct()
 			$assessorEmail = $assessor['Email'];
 		endif;
 
-		if ($assessorEmail):
+		if ($assessorEmail and $sendEmail):
 			$this->sendmail->sendGridDynamic(
 											$assessorEmail, 
 											$assessorName, 
