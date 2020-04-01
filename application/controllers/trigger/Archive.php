@@ -127,23 +127,17 @@ class Archive extends CI_Controller {
 		$candidates = $query->find();
 
 		foreach ($candidates as $candidate):
-
-			$firstname = $candidate->get('firstname');
-			$lastname = $candidate->get('lastname');
-
-			$name = "$firstname $lastname";
 			
 			//Wait to avoid api limit
 			$ratelimit();
 
 			//getUserByName
-			$found = $this->onefile->getUserByName($name);
-
+			$found = $this->onefile->getUser($candidate->get('userId'));
 
 			if ($found !== ""):
 				$ratelimit();
 				$user = json_decode($found, true);
-				if ($this->archiver->archive($user['ID'])):
+				if ($this->archiver->archive($user['ID'], false)):
 					$count++;
 					$candidate->destroy();
 				endif;
