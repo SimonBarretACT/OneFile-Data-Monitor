@@ -113,7 +113,7 @@ class Archive extends CI_Controller {
 	}
 
 	/**
-	 * Auto archive
+	 * Request to archive
 	 *
 	 */
 	public function requests() {
@@ -145,11 +145,12 @@ class Archive extends CI_Controller {
 
 		endforeach;
 
-		$html = "<p>$count accounts have been archived.</p>";
-		$plain = "$count accounts have been archived.";
+		if ($count > 0):
+			$html = "<p>$count accounts have been archived.</p>";
+			$plain = "$count accounts have been archived.";
 
-		$this->sendmail->sendGrid('simonbarrett@acttraining.org.uk', 'Simon Barrett', 'Archive Requests', $html, $plain);
-
+			$this->sendmail->sendGrid('simonbarrett@acttraining.org.uk', 'Simon Barrett', 'Archive Requests', $html, $plain);
+		endif;
 
 	}
 
