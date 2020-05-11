@@ -141,7 +141,7 @@ class Archive extends CI_Controller {
 			if ($found !== ""):
 				$ratelimit();
 				$user = json_decode($found, true);
-				if ($this->archiver->archive($user['ID'], false)):
+				if ($this->archiver->archive($user[0]['ID'], false)):
 					$count++;
 					$candidate->destroy();
 				endif;

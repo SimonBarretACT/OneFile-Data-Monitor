@@ -59,7 +59,7 @@ class Onefile_model extends CI_Model {
 
 	public function getUserByName($name, $lastname='', $role=1) {
 		
-		if($lastname != ''):
+		if($lastname == ''):
 			$pieces = explode(" ", $name);
 
 			$lastname = $pieces[1];
