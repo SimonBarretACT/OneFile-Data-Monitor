@@ -57,12 +57,16 @@ class Onefile_model extends CI_Model {
         
 	}
 
-	public function getUserByName($name, $role=1) {
+	public function getUserByName($name, $lastname='', $role=1) {
 		
-		$pieces = explode(" ", $name);
+		if($lastname != ''):
+			$pieces = explode(" ", $name);
 
-		$lastname = $pieces[1];
-		$firstname = $pieces[0];
+			$lastname = $pieces[1];
+			$firstname = $pieces[0];
+		else:
+			$firstname = $name;
+		endif;
 
 		//Request User by name
 		$response = $this->client->request('POST', "User/Search",

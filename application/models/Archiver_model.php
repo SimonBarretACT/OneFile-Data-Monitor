@@ -86,7 +86,7 @@ public function __construct()
 		$assessorName = $candidates[$recordIndex]['DefaultAssessor'];
 		$learner = $candidates[$recordIndex]['FirstName'] . ' ' . $candidates[$recordIndex]['LastName'];
 
-		$found = $this->onefile->getUserByName($assessorName, 5);
+		$found = $this->onefile->getUserByName($assessorName, '', 5);
 
 		$records = json_decode($found, true);
 		$assessorEmail = '';

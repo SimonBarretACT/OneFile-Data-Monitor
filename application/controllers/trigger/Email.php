@@ -54,7 +54,7 @@ class Email extends CI_Controller {
 
 				$learner = $candidate['FirstName'] . ' ' . $candidate['LastName'];
 		
-				$found = $this->onefile->getUserByName($assessorName, 5);
+				$found = $this->onefile->getUserByName($assessorName, '', 5);
 
 				$records = json_decode($found, true);
 				$assessorEmail = '';

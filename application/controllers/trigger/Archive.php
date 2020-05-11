@@ -132,7 +132,11 @@ class Archive extends CI_Controller {
 			$ratelimit();
 
 			//getUserByName
-			$found = $this->onefile->getUser($candidate->get('userId'));
+			if($candidate->get('userId')):
+				$found = $this->onefile->getUser($candidate->get('userId'));
+			else:
+				$found = $this->onefile->getUserByName($candidate->get('firstname'), $candidate->get('lastname'), $candidate->get('role'));
+			endif;
 
 			if ($found !== ""):
 				$ratelimit();
